@@ -43,6 +43,10 @@ def p_factor_negation(p):
     'factor : NEGATION factor'
     p[0] = p[1] + p[2]
 
+def p_factor_dnegation(p):
+    'factor : DNEGATION CHARS'
+    p[0] = p[2]
+
 
 def p_factor_expr(p):
     'factor : LPAREN expression RPAREN'
@@ -64,4 +68,5 @@ while True:
         break
     if not s: continue
     result = parser.parse(s)
+    result = parser.parse(result)
     print(result)

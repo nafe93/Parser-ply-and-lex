@@ -9,7 +9,8 @@ tokens = (
     'CONJUNCTION',
     'DISJUNCTION',
     'IMPLICATION',
-    'NEGATION'
+    'NEGATION',
+    'DNEGATION'
 )
 # Имя токенов всегда требуется
 
@@ -20,6 +21,7 @@ t_CONJUNCTION = r'/\\'
 t_DISJUNCTION = r'\\/'
 t_IMPLICATION = r'->'
 t_NEGATION = r'~'
+t_DNEGATION = r'~~'
 
 
 # Правило регулярного выражения с функцией действия
@@ -63,7 +65,7 @@ def t_error(t):
 
 lexer = lex.lex()
 
-data = "~p \/ (p /\ q) -> d"
+data = "~~p \/ (~p /\ q) -> d"
 lexer.input(data)
 
 while True:
