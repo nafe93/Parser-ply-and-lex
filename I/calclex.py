@@ -10,7 +10,9 @@ tokens = (
     'DISJUNCTION',
     'IMPLICATION',
     'NEGATION',
-    'DNEGATION'
+    'DNEGATION',
+    'DDNF',
+    'DCNF'
 )
 # Имя токенов всегда требуется
 
@@ -22,6 +24,8 @@ t_DISJUNCTION = r'\\/'
 t_IMPLICATION = r'->'
 t_NEGATION = r'~'
 t_DNEGATION = r'~~'
+t_DDNF = r'[a-zA-z0-9 ]+/\\\([a-zA-z0-9 ]+\\/[a-zA-z0-9 ]+\)'
+t_DCNF = r'[a-zA-z0-9 ]+\\/\([a-zA-z0-9 ]+/\\[a-zA-z0-9 ]+\)'
 
 
 # Правило регулярного выражения с функцией действия
@@ -38,7 +42,7 @@ def t_NUMBER(t):
 
 # Все буквы
 def t_CHARS(t):
-    r'[A-Za-z]+'
+    r'[A-Za-z ]+'
     try:
         t.value = str(t.value)
     except ValueError:

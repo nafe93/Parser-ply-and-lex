@@ -36,8 +36,16 @@ def p_factor_disjunction(p):
 
 def p_factor_implication(p):
     'expression : expression IMPLICATION term'
-    p[0] = "~" + p[1] + "\\/" + p[3]
+    p[0] = "\(" + p[1] + "/\\" + p[3] + "\)" + "\\/" + "\(" + p[1] + "/\\" + p[5] + "\)"
 
+def p_factor_ddnf(p):
+    'expression : expression expression DDNF term'
+    p[0] = "\(" + p[1] + "/\\" + p[3] + "\)" + "\\/" + "\(" + p[1] + "/\\" + p[5] + "\)"
+
+
+def p_factor_dcnf(p):
+    'expression : expression DCNF term'
+    p[0] = "~" + p[1] + "\\/" + p[3]
 
 def p_factor_negation(p):
     'factor : NEGATION factor'
