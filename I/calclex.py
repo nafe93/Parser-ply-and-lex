@@ -1,46 +1,49 @@
+import sys
 import ply.lex as lex
 
-# Имя токенов всегда требуется
 tokens = (
     'NUMBER',
-    'PLUS',
-    'MINUS',
-    'TIMES',
-    'DIVIDE',
+    'CHARS',
     'LPAREN',
     'RPAREN',
-    'CHARS',
     'CONJUNCTION',
     'DISJUNCTION',
     'IMPLICATION',
     'NEGATION'
 )
+# Имя токенов всегда требуется
 
 # Правила регулярных выражений для токенов
-t_PLUS = r'\+'
-t_MINUS = r'-'
-t_TIMES = r'\*'
-t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_CONJUNCTION = r'/\\'
 t_DISJUNCTION = r'\\/'
 t_IMPLICATION = r'->'
+t_NEGATION = r'~'
 
 
 # Правило регулярного выражения с функцией действия
 # Что такое число
 def t_NUMBER(t):
     r'\d+'
-    t.value = int(t.value)
+    try:
+        t.value = int(t.value)
+    except ValueError:
+        print(f"Строка {t.lineno}: номер {t.value} очень большая!")
+        t.value = 0
     return t
 
 
 # Все буквы
 def t_CHARS(t):
     r'[A-Za-z]+'
-    t.value = str(t.value)
+    try:
+        t.value = str(t.value)
+    except ValueError:
+        print(f"Строка {t.lineno}: номер {t.value} есть ошибка!")
+        t.value = 0
     return t
+
 
 # Перенос строки
 def t_newline(t):
@@ -48,7 +51,7 @@ def t_newline(t):
     t.lexer.lineno += len(t.value)
 
 
-# A string containing ignored characters (spaces and tabs)
+# игнор
 t_ignore = ' \t'
 
 
@@ -57,14 +60,14 @@ def t_error(t):
     print(f"В символе под номером : {t.value[0]} произошла ошибка")
     t.lexer.skip(1)
 
+
 lexer = lex.lex()
 
-data = "pp + v"
-
+data = "~p \/ (p /\ q) -> d"
 lexer.input(data)
 
 while True:
-     tok = lexer.token()
-     if not tok:
-         break      # No more input
-     print(tok)
+    tok = lexer.token()
+    if not tok:
+        break  # No more input
+    print(tok)
