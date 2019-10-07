@@ -1,8 +1,22 @@
 # library
 import ply.yacc as yacc
-
 # my file
 from calclex import tokens
+import calclex
+
+
+def tautology_conjunction(p):
+    if p[1] == "~" + p[3]:
+        p[0] = 0
+    if p[3] == "~" + p[1]:
+        p[0] = 0
+
+
+def tautology_disjunction(p):
+    if p[1] == "~" + p[3]:
+        p[0] = 1
+    if p[3] == "~" + p[1]:
+        p[0] = 1
 
 
 def p_expression_term(p):
@@ -27,29 +41,23 @@ def p_factor_chars(p):
 def p_factor_conjuction(p):
     'expression  : expression CONJUNCTION term'
     p[0] = p[1] + "/\\" + p[3]
+    tautology_conjunction(p)
 
 
 def p_factor_disjunction(p):
     'expression : expression DISJUNCTION term'
     p[0] = p[1] + "\\/" + p[3]
+    tautology_disjunction(p)
 
 
 def p_factor_implication(p):
     'expression : expression IMPLICATION term'
-    p[0] = "\(" + p[1] + "/\\" + p[3] + "\)" + "\\/" + "\(" + p[1] + "/\\" + p[5] + "\)"
-
-def p_factor_ddnf(p):
-    'expression : expression expression DDNF term'
-    p[0] = "\(" + p[1] + "/\\" + p[3] + "\)" + "\\/" + "\(" + p[1] + "/\\" + p[5] + "\)"
-
-
-def p_factor_dcnf(p):
-    'expression : expression DCNF term'
     p[0] = "~" + p[1] + "\\/" + p[3]
 
 def p_factor_negation(p):
     'factor : NEGATION factor'
     p[0] = p[1] + p[2]
+
 
 def p_factor_dnegation(p):
     'factor : DNEGATION CHARS'
@@ -58,7 +66,7 @@ def p_factor_dnegation(p):
 
 def p_factor_expr(p):
     'factor : LPAREN expression RPAREN'
-    p[0] = p[2]
+    p[0] = '(' + p[2] + ')'
 
 
 # Error rule for syntax errors
@@ -76,5 +84,4 @@ while True:
         break
     if not s: continue
     result = parser.parse(s)
-    result = parser.parse(result)
     print(result)

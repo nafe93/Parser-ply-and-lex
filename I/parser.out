@@ -10,32 +10,28 @@ Rule 4     factor -> CHARS
 Rule 5     expression -> expression CONJUNCTION term
 Rule 6     expression -> expression DISJUNCTION term
 Rule 7     expression -> expression IMPLICATION term
-Rule 8     expression -> expression DDNF term
-Rule 9     expression -> expression DCNF term
-Rule 10    factor -> NEGATION factor
-Rule 11    factor -> DNEGATION CHARS
-Rule 12    factor -> LPAREN expression RPAREN
+Rule 8     factor -> NEGATION factor
+Rule 9     factor -> DNEGATION CHARS
+Rule 10    factor -> LPAREN expression RPAREN
 
 Terminals, with rules where they appear
 
-CHARS                : 4 11
+CHARS                : 4 9
 CONJUNCTION          : 5
-DCNF                 : 9
-DDNF                 : 8
 DISJUNCTION          : 6
-DNEGATION            : 11
+DNEGATION            : 9
 IMPLICATION          : 7
-LPAREN               : 12
-NEGATION             : 10
+LPAREN               : 10
+NEGATION             : 8
 NUMBER               : 3
-RPAREN               : 12
+RPAREN               : 10
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 5 6 7 8 9 12 0
-factor               : 2 10
-term                 : 1 5 6 7 8 9
+expression           : 5 6 7 10 0
+factor               : 2 8
+term                 : 1 5 6 7
 
 Parsing method: LALR
 
@@ -46,14 +42,12 @@ state 0
     (5) expression -> . expression CONJUNCTION term
     (6) expression -> . expression DISJUNCTION term
     (7) expression -> . expression IMPLICATION term
-    (8) expression -> . expression DDNF term
-    (9) expression -> . expression DCNF term
     (2) term -> . factor
     (3) factor -> . NUMBER
     (4) factor -> . CHARS
-    (10) factor -> . NEGATION factor
-    (11) factor -> . DNEGATION CHARS
-    (12) factor -> . LPAREN expression RPAREN
+    (8) factor -> . NEGATION factor
+    (9) factor -> . DNEGATION CHARS
+    (10) factor -> . LPAREN expression RPAREN
 
     NUMBER          shift and go to state 4
     CHARS           shift and go to state 5
@@ -71,14 +65,10 @@ state 1
     (5) expression -> expression . CONJUNCTION term
     (6) expression -> expression . DISJUNCTION term
     (7) expression -> expression . IMPLICATION term
-    (8) expression -> expression . DDNF term
-    (9) expression -> expression . DCNF term
 
     CONJUNCTION     shift and go to state 9
     DISJUNCTION     shift and go to state 10
     IMPLICATION     shift and go to state 11
-    DDNF            shift and go to state 12
-    DCNF            shift and go to state 13
 
 
 state 2
@@ -88,8 +78,6 @@ state 2
     CONJUNCTION     reduce using rule 1 (expression -> term .)
     DISJUNCTION     reduce using rule 1 (expression -> term .)
     IMPLICATION     reduce using rule 1 (expression -> term .)
-    DDNF            reduce using rule 1 (expression -> term .)
-    DCNF            reduce using rule 1 (expression -> term .)
     $end            reduce using rule 1 (expression -> term .)
     RPAREN          reduce using rule 1 (expression -> term .)
 
@@ -101,8 +89,6 @@ state 3
     CONJUNCTION     reduce using rule 2 (term -> factor .)
     DISJUNCTION     reduce using rule 2 (term -> factor .)
     IMPLICATION     reduce using rule 2 (term -> factor .)
-    DDNF            reduce using rule 2 (term -> factor .)
-    DCNF            reduce using rule 2 (term -> factor .)
     $end            reduce using rule 2 (term -> factor .)
     RPAREN          reduce using rule 2 (term -> factor .)
 
@@ -114,8 +100,6 @@ state 4
     CONJUNCTION     reduce using rule 3 (factor -> NUMBER .)
     DISJUNCTION     reduce using rule 3 (factor -> NUMBER .)
     IMPLICATION     reduce using rule 3 (factor -> NUMBER .)
-    DDNF            reduce using rule 3 (factor -> NUMBER .)
-    DCNF            reduce using rule 3 (factor -> NUMBER .)
     $end            reduce using rule 3 (factor -> NUMBER .)
     RPAREN          reduce using rule 3 (factor -> NUMBER .)
 
@@ -127,20 +111,18 @@ state 5
     CONJUNCTION     reduce using rule 4 (factor -> CHARS .)
     DISJUNCTION     reduce using rule 4 (factor -> CHARS .)
     IMPLICATION     reduce using rule 4 (factor -> CHARS .)
-    DDNF            reduce using rule 4 (factor -> CHARS .)
-    DCNF            reduce using rule 4 (factor -> CHARS .)
     $end            reduce using rule 4 (factor -> CHARS .)
     RPAREN          reduce using rule 4 (factor -> CHARS .)
 
 
 state 6
 
-    (10) factor -> NEGATION . factor
+    (8) factor -> NEGATION . factor
     (3) factor -> . NUMBER
     (4) factor -> . CHARS
-    (10) factor -> . NEGATION factor
-    (11) factor -> . DNEGATION CHARS
-    (12) factor -> . LPAREN expression RPAREN
+    (8) factor -> . NEGATION factor
+    (9) factor -> . DNEGATION CHARS
+    (10) factor -> . LPAREN expression RPAREN
 
     NUMBER          shift and go to state 4
     CHARS           shift and go to state 5
@@ -148,30 +130,28 @@ state 6
     DNEGATION       shift and go to state 7
     LPAREN          shift and go to state 8
 
-    factor                         shift and go to state 14
+    factor                         shift and go to state 12
 
 state 7
 
-    (11) factor -> DNEGATION . CHARS
+    (9) factor -> DNEGATION . CHARS
 
-    CHARS           shift and go to state 15
+    CHARS           shift and go to state 13
 
 
 state 8
 
-    (12) factor -> LPAREN . expression RPAREN
+    (10) factor -> LPAREN . expression RPAREN
     (1) expression -> . term
     (5) expression -> . expression CONJUNCTION term
     (6) expression -> . expression DISJUNCTION term
     (7) expression -> . expression IMPLICATION term
-    (8) expression -> . expression DDNF term
-    (9) expression -> . expression DCNF term
     (2) term -> . factor
     (3) factor -> . NUMBER
     (4) factor -> . CHARS
-    (10) factor -> . NEGATION factor
-    (11) factor -> . DNEGATION CHARS
-    (12) factor -> . LPAREN expression RPAREN
+    (8) factor -> . NEGATION factor
+    (9) factor -> . DNEGATION CHARS
+    (10) factor -> . LPAREN expression RPAREN
 
     NUMBER          shift and go to state 4
     CHARS           shift and go to state 5
@@ -179,7 +159,7 @@ state 8
     DNEGATION       shift and go to state 7
     LPAREN          shift and go to state 8
 
-    expression                     shift and go to state 16
+    expression                     shift and go to state 14
     term                           shift and go to state 2
     factor                         shift and go to state 3
 
@@ -189,9 +169,47 @@ state 9
     (2) term -> . factor
     (3) factor -> . NUMBER
     (4) factor -> . CHARS
-    (10) factor -> . NEGATION factor
-    (11) factor -> . DNEGATION CHARS
-    (12) factor -> . LPAREN expression RPAREN
+    (8) factor -> . NEGATION factor
+    (9) factor -> . DNEGATION CHARS
+    (10) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 4
+    CHARS           shift and go to state 5
+    NEGATION        shift and go to state 6
+    DNEGATION       shift and go to state 7
+    LPAREN          shift and go to state 8
+
+    term                           shift and go to state 15
+    factor                         shift and go to state 3
+
+state 10
+
+    (6) expression -> expression DISJUNCTION . term
+    (2) term -> . factor
+    (3) factor -> . NUMBER
+    (4) factor -> . CHARS
+    (8) factor -> . NEGATION factor
+    (9) factor -> . DNEGATION CHARS
+    (10) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 4
+    CHARS           shift and go to state 5
+    NEGATION        shift and go to state 6
+    DNEGATION       shift and go to state 7
+    LPAREN          shift and go to state 8
+
+    term                           shift and go to state 16
+    factor                         shift and go to state 3
+
+state 11
+
+    (7) expression -> expression IMPLICATION . term
+    (2) term -> . factor
+    (3) factor -> . NUMBER
+    (4) factor -> . CHARS
+    (8) factor -> . NEGATION factor
+    (9) factor -> . DNEGATION CHARS
+    (10) factor -> . LPAREN expression RPAREN
 
     NUMBER          shift and go to state 4
     CHARS           shift and go to state 5
@@ -202,199 +220,81 @@ state 9
     term                           shift and go to state 17
     factor                         shift and go to state 3
 
-state 10
-
-    (6) expression -> expression DISJUNCTION . term
-    (2) term -> . factor
-    (3) factor -> . NUMBER
-    (4) factor -> . CHARS
-    (10) factor -> . NEGATION factor
-    (11) factor -> . DNEGATION CHARS
-    (12) factor -> . LPAREN expression RPAREN
-
-    NUMBER          shift and go to state 4
-    CHARS           shift and go to state 5
-    NEGATION        shift and go to state 6
-    DNEGATION       shift and go to state 7
-    LPAREN          shift and go to state 8
-
-    term                           shift and go to state 18
-    factor                         shift and go to state 3
-
-state 11
-
-    (7) expression -> expression IMPLICATION . term
-    (2) term -> . factor
-    (3) factor -> . NUMBER
-    (4) factor -> . CHARS
-    (10) factor -> . NEGATION factor
-    (11) factor -> . DNEGATION CHARS
-    (12) factor -> . LPAREN expression RPAREN
-
-    NUMBER          shift and go to state 4
-    CHARS           shift and go to state 5
-    NEGATION        shift and go to state 6
-    DNEGATION       shift and go to state 7
-    LPAREN          shift and go to state 8
-
-    term                           shift and go to state 19
-    factor                         shift and go to state 3
-
 state 12
 
-    (8) expression -> expression DDNF . term
-    (2) term -> . factor
-    (3) factor -> . NUMBER
-    (4) factor -> . CHARS
-    (10) factor -> . NEGATION factor
-    (11) factor -> . DNEGATION CHARS
-    (12) factor -> . LPAREN expression RPAREN
+    (8) factor -> NEGATION factor .
 
-    NUMBER          shift and go to state 4
-    CHARS           shift and go to state 5
-    NEGATION        shift and go to state 6
-    DNEGATION       shift and go to state 7
-    LPAREN          shift and go to state 8
+    CONJUNCTION     reduce using rule 8 (factor -> NEGATION factor .)
+    DISJUNCTION     reduce using rule 8 (factor -> NEGATION factor .)
+    IMPLICATION     reduce using rule 8 (factor -> NEGATION factor .)
+    $end            reduce using rule 8 (factor -> NEGATION factor .)
+    RPAREN          reduce using rule 8 (factor -> NEGATION factor .)
 
-    term                           shift and go to state 20
-    factor                         shift and go to state 3
 
 state 13
 
-    (9) expression -> expression DCNF . term
-    (2) term -> . factor
-    (3) factor -> . NUMBER
-    (4) factor -> . CHARS
-    (10) factor -> . NEGATION factor
-    (11) factor -> . DNEGATION CHARS
-    (12) factor -> . LPAREN expression RPAREN
+    (9) factor -> DNEGATION CHARS .
 
-    NUMBER          shift and go to state 4
-    CHARS           shift and go to state 5
-    NEGATION        shift and go to state 6
-    DNEGATION       shift and go to state 7
-    LPAREN          shift and go to state 8
+    CONJUNCTION     reduce using rule 9 (factor -> DNEGATION CHARS .)
+    DISJUNCTION     reduce using rule 9 (factor -> DNEGATION CHARS .)
+    IMPLICATION     reduce using rule 9 (factor -> DNEGATION CHARS .)
+    $end            reduce using rule 9 (factor -> DNEGATION CHARS .)
+    RPAREN          reduce using rule 9 (factor -> DNEGATION CHARS .)
 
-    term                           shift and go to state 21
-    factor                         shift and go to state 3
 
 state 14
 
-    (10) factor -> NEGATION factor .
-
-    CONJUNCTION     reduce using rule 10 (factor -> NEGATION factor .)
-    DISJUNCTION     reduce using rule 10 (factor -> NEGATION factor .)
-    IMPLICATION     reduce using rule 10 (factor -> NEGATION factor .)
-    DDNF            reduce using rule 10 (factor -> NEGATION factor .)
-    DCNF            reduce using rule 10 (factor -> NEGATION factor .)
-    $end            reduce using rule 10 (factor -> NEGATION factor .)
-    RPAREN          reduce using rule 10 (factor -> NEGATION factor .)
-
-
-state 15
-
-    (11) factor -> DNEGATION CHARS .
-
-    CONJUNCTION     reduce using rule 11 (factor -> DNEGATION CHARS .)
-    DISJUNCTION     reduce using rule 11 (factor -> DNEGATION CHARS .)
-    IMPLICATION     reduce using rule 11 (factor -> DNEGATION CHARS .)
-    DDNF            reduce using rule 11 (factor -> DNEGATION CHARS .)
-    DCNF            reduce using rule 11 (factor -> DNEGATION CHARS .)
-    $end            reduce using rule 11 (factor -> DNEGATION CHARS .)
-    RPAREN          reduce using rule 11 (factor -> DNEGATION CHARS .)
-
-
-state 16
-
-    (12) factor -> LPAREN expression . RPAREN
+    (10) factor -> LPAREN expression . RPAREN
     (5) expression -> expression . CONJUNCTION term
     (6) expression -> expression . DISJUNCTION term
     (7) expression -> expression . IMPLICATION term
-    (8) expression -> expression . DDNF term
-    (9) expression -> expression . DCNF term
 
-    RPAREN          shift and go to state 22
+    RPAREN          shift and go to state 18
     CONJUNCTION     shift and go to state 9
     DISJUNCTION     shift and go to state 10
     IMPLICATION     shift and go to state 11
-    DDNF            shift and go to state 12
-    DCNF            shift and go to state 13
 
 
-state 17
+state 15
 
     (5) expression -> expression CONJUNCTION term .
 
     CONJUNCTION     reduce using rule 5 (expression -> expression CONJUNCTION term .)
     DISJUNCTION     reduce using rule 5 (expression -> expression CONJUNCTION term .)
     IMPLICATION     reduce using rule 5 (expression -> expression CONJUNCTION term .)
-    DDNF            reduce using rule 5 (expression -> expression CONJUNCTION term .)
-    DCNF            reduce using rule 5 (expression -> expression CONJUNCTION term .)
     $end            reduce using rule 5 (expression -> expression CONJUNCTION term .)
     RPAREN          reduce using rule 5 (expression -> expression CONJUNCTION term .)
 
 
-state 18
+state 16
 
     (6) expression -> expression DISJUNCTION term .
 
     CONJUNCTION     reduce using rule 6 (expression -> expression DISJUNCTION term .)
     DISJUNCTION     reduce using rule 6 (expression -> expression DISJUNCTION term .)
     IMPLICATION     reduce using rule 6 (expression -> expression DISJUNCTION term .)
-    DDNF            reduce using rule 6 (expression -> expression DISJUNCTION term .)
-    DCNF            reduce using rule 6 (expression -> expression DISJUNCTION term .)
     $end            reduce using rule 6 (expression -> expression DISJUNCTION term .)
     RPAREN          reduce using rule 6 (expression -> expression DISJUNCTION term .)
 
 
-state 19
+state 17
 
     (7) expression -> expression IMPLICATION term .
 
     CONJUNCTION     reduce using rule 7 (expression -> expression IMPLICATION term .)
     DISJUNCTION     reduce using rule 7 (expression -> expression IMPLICATION term .)
     IMPLICATION     reduce using rule 7 (expression -> expression IMPLICATION term .)
-    DDNF            reduce using rule 7 (expression -> expression IMPLICATION term .)
-    DCNF            reduce using rule 7 (expression -> expression IMPLICATION term .)
     $end            reduce using rule 7 (expression -> expression IMPLICATION term .)
     RPAREN          reduce using rule 7 (expression -> expression IMPLICATION term .)
 
 
-state 20
+state 18
 
-    (8) expression -> expression DDNF term .
+    (10) factor -> LPAREN expression RPAREN .
 
-    CONJUNCTION     reduce using rule 8 (expression -> expression DDNF term .)
-    DISJUNCTION     reduce using rule 8 (expression -> expression DDNF term .)
-    IMPLICATION     reduce using rule 8 (expression -> expression DDNF term .)
-    DDNF            reduce using rule 8 (expression -> expression DDNF term .)
-    DCNF            reduce using rule 8 (expression -> expression DDNF term .)
-    $end            reduce using rule 8 (expression -> expression DDNF term .)
-    RPAREN          reduce using rule 8 (expression -> expression DDNF term .)
-
-
-state 21
-
-    (9) expression -> expression DCNF term .
-
-    CONJUNCTION     reduce using rule 9 (expression -> expression DCNF term .)
-    DISJUNCTION     reduce using rule 9 (expression -> expression DCNF term .)
-    IMPLICATION     reduce using rule 9 (expression -> expression DCNF term .)
-    DDNF            reduce using rule 9 (expression -> expression DCNF term .)
-    DCNF            reduce using rule 9 (expression -> expression DCNF term .)
-    $end            reduce using rule 9 (expression -> expression DCNF term .)
-    RPAREN          reduce using rule 9 (expression -> expression DCNF term .)
-
-
-state 22
-
-    (12) factor -> LPAREN expression RPAREN .
-
-    CONJUNCTION     reduce using rule 12 (factor -> LPAREN expression RPAREN .)
-    DISJUNCTION     reduce using rule 12 (factor -> LPAREN expression RPAREN .)
-    IMPLICATION     reduce using rule 12 (factor -> LPAREN expression RPAREN .)
-    DDNF            reduce using rule 12 (factor -> LPAREN expression RPAREN .)
-    DCNF            reduce using rule 12 (factor -> LPAREN expression RPAREN .)
-    $end            reduce using rule 12 (factor -> LPAREN expression RPAREN .)
-    RPAREN          reduce using rule 12 (factor -> LPAREN expression RPAREN .)
+    CONJUNCTION     reduce using rule 10 (factor -> LPAREN expression RPAREN .)
+    DISJUNCTION     reduce using rule 10 (factor -> LPAREN expression RPAREN .)
+    IMPLICATION     reduce using rule 10 (factor -> LPAREN expression RPAREN .)
+    $end            reduce using rule 10 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 10 (factor -> LPAREN expression RPAREN .)
 

@@ -10,9 +10,11 @@ tokens = (
     'DISJUNCTION',
     'IMPLICATION',
     'NEGATION',
-    'DNEGATION',
-    'DDNF',
-    'DCNF'
+    'DNEGATION'
+
+    # 'MORGAN'
+    # 'DDNF',
+    # 'DCNF'
 )
 # Имя токенов всегда требуется
 
@@ -24,8 +26,10 @@ t_DISJUNCTION = r'\\/'
 t_IMPLICATION = r'->'
 t_NEGATION = r'~'
 t_DNEGATION = r'~~'
-t_DDNF = r'[a-zA-z0-9 ]+/\\\([a-zA-z0-9 ]+\\/[a-zA-z0-9 ]+\)'
-t_DCNF = r'[a-zA-z0-9 ]+\\/\([a-zA-z0-9 ]+/\\[a-zA-z0-9 ]+\)'
+
+# t_MORGAN = r'(~|~ )\(.*\)'
+# t_DDNF = r'[a-zA-z0-9~ ]+/\\\([a-zA-z0-9~ ]+\\/[a-zA-z0-9~ ]+\)'
+# t_DCNF = r'[a-zA-z0-9~ ]+\\/\([a-zA-z0-9~ ]+/\\[a-zA-z0-9~ ]+\)'
 
 
 # Правило регулярного выражения с функцией действия
@@ -69,7 +73,7 @@ def t_error(t):
 
 lexer = lex.lex()
 
-data = "~~p \/ (~p /\ q) -> d"
+data = "~(~p /\ q)"
 lexer.input(data)
 
 while True:
