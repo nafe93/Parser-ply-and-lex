@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="730ee2a9-fd25-420a-9edc-63dee4f46c0f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calclex.py" beforeDir="false" afterPath="$PROJECT_DIR$/calclex.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calcyacc.py" beforeDir="false" afterPath="$PROJECT_DIR$/calcyacc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
@@ -19,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/calclex.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            <state relative-caret-position="25">
+              <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -31,11 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/calcyacc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1375">
-              <caret line="55" selection-start-line="55" selection-end-line="55" />
-              <folding>
-                <element signature="e#10#33#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="214">
+              <caret line="76" column="17" selection-start-column="2" selection-end-line="116" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -68,6 +64,8 @@
       <find>morgan</find>
       <find>DEMORGAN</find>
       <find>В символе под номером</find>
+      <find>NDISJUNCTION</find>
+      <find>NCONJUNCTION</find>
     </findStrings>
     <replaceStrings>
       <replace>morgan</replace>
@@ -90,7 +88,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -224,12 +222,12 @@
       <workItem from="1570382420985" duration="3412000" />
       <workItem from="1570387033230" duration="10421000" />
       <workItem from="1570402478406" duration="4304000" />
-      <workItem from="1570455892574" duration="11814000" />
+      <workItem from="1570455892574" duration="14760000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29951000" />
+    <option name="totallyTimeSpent" value="32897000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -265,7 +263,7 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/I$calcyacc.coverage" NAME="calcyacc Coverage Results" MODIFIED="1570469541687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/I$calcyacc.coverage" NAME="calcyacc Coverage Results" MODIFIED="1570482533469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/I$main.coverage" NAME="main Coverage Results" MODIFIED="1570389584682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/I$calclex.coverage" NAME="calclex Coverage Results" MODIFIED="1570398867736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -292,18 +290,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/calcyacc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1375">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
-          <folding>
-            <element signature="e#10#33#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="214">
+          <caret line="76" column="17" selection-start-column="2" selection-end-line="116" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/calclex.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="25">
+          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

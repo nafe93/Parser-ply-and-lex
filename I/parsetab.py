@@ -34,7 +34,7 @@ _lr_productions = [
   ('expression -> expression CONJUNCTION term','expression',3,'p_factor_conjuction','calcyacc.py',42),
   ('expression -> expression DISJUNCTION term','expression',3,'p_factor_disjunction','calcyacc.py',48),
   ('expression -> expression IMPLICATION term','expression',3,'p_factor_implication','calcyacc.py',54),
-  ('factor -> NEGATION factor','factor',2,'p_factor_negation','calcyacc.py',58),
-  ('factor -> DNEGATION CHARS','factor',2,'p_factor_dnegation','calcyacc.py',63),
-  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','calcyacc.py',68),
+  ('factor -> NEGATION factor','factor',2,'p_factor_negation','calcyacc.py',59),
+  ('factor -> DNEGATION CHARS','factor',2,'p_factor_dnegation','calcyacc.py',77),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','calcyacc.py',82),
 ]

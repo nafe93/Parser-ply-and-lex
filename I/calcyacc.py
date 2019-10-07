@@ -54,9 +54,23 @@ def p_factor_implication(p):
     'expression : expression IMPLICATION term'
     p[0] = "~" + p[1] + "\\/" + p[3]
 
+
 def p_factor_negation(p):
     'factor : NEGATION factor'
-    p[0] = p[1] + p[2]
+    if len(p[2]) == 1:
+        p[0] = p[1] + p[2]
+    elif len(p[2]) > 1:
+
+        buffer = list(p[2])
+        for i, val in enumerate(buffer):
+
+            if val == '(' or val == ')':
+                val = val
+            elif val == '~':
+                val = ''
+            else:
+                buffer[i] = "~" + val
+        p[0] = ''.join(buffer)
 
 
 def p_factor_dnegation(p):
@@ -66,7 +80,10 @@ def p_factor_dnegation(p):
 
 def p_factor_expr(p):
     'factor : LPAREN expression RPAREN'
-    p[0] = '(' + p[2] + ')'
+    if len(p[2]) == 1:
+        p[0] = p[2]
+    else:
+        p[0] = '(' + p[2] + ')'
 
 
 # Error rule for syntax errors
@@ -84,4 +101,5 @@ while True:
         break
     if not s: continue
     result = parser.parse(s)
+    result = parser.parse(result)
     print(result)
