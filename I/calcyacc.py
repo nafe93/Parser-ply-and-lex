@@ -5,6 +5,11 @@ from calclex import tokens
 import calclex
 
 
+def split_list(a_list):
+    half = len(a_list)//2
+    return a_list[:half], a_list[half:]
+
+
 def tautology_conjunction(p):
     if p[1] == "~" + p[3]:
         p[0] = 0
@@ -40,7 +45,25 @@ def p_factor_chars(p):
 
 def p_factor_conjuction(p):
     'expression  : expression CONJUNCTION term'
-    p[0] = p[1] + "/\\" + p[3]
+    buffer = list(p[3])
+
+    if buffer[0] == '(':
+        for i, v in enumerate(buffer):
+            if buffer[i] == '(' or buffer[i] == ')':
+                buffer[i] = ""
+            elif buffer[i] == '/':
+                buffer[i] == ""
+            elif buffer[i] == '\\':
+                buffer[i] == ""
+            else:
+                buffer[i] = "(" + str(p[1]) + "/\\" + v + ")"
+
+
+        p[0] = "(" + "".join(buffer) + ")"
+    else:
+        p[0] = p[1] + "/\\" + p[3]
+
+
     tautology_conjunction(p)
 
 
@@ -62,12 +85,16 @@ def p_factor_negation(p):
     elif len(p[2]) > 1:
 
         buffer = list(p[2])
-        for i, val in enumerate(buffer):
 
+        for i, val in enumerate(buffer):
             if val == '(' or val == ')':
-                val = val
+                buffer[i] = val
             elif val == '~':
-                val = ''
+                buffer[i] = '~'
+            elif val == '\\':
+                buffer[i] = '/'
+            elif val == '/':
+                buffer[i] = '\\'
             else:
                 buffer[i] = "~" + val
         p[0] = ''.join(buffer)

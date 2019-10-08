@@ -73,7 +73,7 @@ def t_error(t):
 
 lexer = lex.lex()
 
-data = "~(~p /\ q)"
+data = "p\/(q/\s)"
 lexer.input(data)
 
 while True:
