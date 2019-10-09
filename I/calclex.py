@@ -12,7 +12,6 @@ tokens = (
     'NEGATION',
     'DNEGATION'
 
-    # 'MORGAN'
     # 'DDNF',
     # 'DCNF'
 )
@@ -73,11 +72,11 @@ def t_error(t):
 
 lexer = lex.lex()
 
-data = "p\/(q/\s)"
+data = "p/\(q\/s)"
 lexer.input(data)
 
 while True:
     tok = lexer.token()
     if not tok:
         break  # No more input
-    print(tok)
+    # print(tok)

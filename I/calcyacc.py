@@ -1,12 +1,16 @@
 # library
 import ply.yacc as yacc
+from re import sub
+
 # my file
 from calclex import tokens
 import calclex
 
+global_paren_list = list(set())
+new_paren_list = list(set())
 
 def split_list(a_list):
-    half = len(a_list)//2
+    half = len(a_list) // 2
     return a_list[:half], a_list[half:]
 
 
@@ -32,9 +36,9 @@ def p_expression_term(p):
 def p_term_factor(p):
     'term : factor'
     p[0] = p[1]
+    global_paren_list.append(p[0])
 
-
-def p_factor_num(p):
+def p_factor_number(p):
     'factor : NUMBER'
     p[0] = p[1]
 
@@ -43,10 +47,11 @@ def p_factor_chars(p):
     'factor : CHARS'
     p[0] = p[1]
 
-def p_factor_conjuction(p):
-    'expression  : expression CONJUNCTION term'
-    buffer = list(p[3])
 
+def p_factor_conjuction(p):
+    '''expression : expression CONJUNCTION term'''
+
+    buffer = list(p[3])
     if buffer[0] == '(':
         for i, v in enumerate(buffer):
             if buffer[i] == '(' or buffer[i] == ')':
@@ -57,8 +62,6 @@ def p_factor_conjuction(p):
                 buffer[i] == ""
             else:
                 buffer[i] = "(" + str(p[1]) + "/\\" + v + ")"
-
-
         p[0] = "(" + "".join(buffer) + ")"
     else:
         p[0] = p[1] + "/\\" + p[3]
@@ -69,7 +72,22 @@ def p_factor_conjuction(p):
 
 def p_factor_disjunction(p):
     'expression : expression DISJUNCTION term'
-    p[0] = p[1] + "\\/" + p[3]
+
+    buffer = list(p[3])
+    if buffer[0] == '(':
+        for i, v in enumerate(buffer):
+            if buffer[i] == '(' or buffer[i] == ')':
+                buffer[i] = ""
+            elif buffer[i] == '/':
+                buffer[i] == ""
+            elif buffer[i] == '\\':
+                buffer[i] == ""
+            else:
+                buffer[i] = "(" + str(p[1]) + "\\/" + v + ")"
+        p[0] = "(" + "".join(buffer) + ")"
+    else:
+        p[0] = p[1] + "\\/" + p[3]
+
     tautology_disjunction(p)
 
 
@@ -110,7 +128,7 @@ def p_factor_expr(p):
     if len(p[2]) == 1:
         p[0] = p[2]
     else:
-        p[0] = '(' + p[2] + ')'
+        p[0] = p[1] + p[2] + p[3]
 
 
 # Error rule for syntax errors
@@ -128,5 +146,5 @@ while True:
         break
     if not s: continue
     result = parser.parse(s)
-    result = parser.parse(result)
+    # result = parser.parse(result)
     print(result)

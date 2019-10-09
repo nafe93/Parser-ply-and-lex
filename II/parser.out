@@ -1,0 +1,379 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> expression AND term
+Rule 2     expression -> expression OR term
+Rule 3     expression -> expression imp term
+Rule 4     term -> term DNF factor
+Rule 5     term -> term CNF factor
+Rule 6     factor -> NEGATION factor
+Rule 7     factor -> DOUBLE_NEGATION factor
+Rule 8     expression -> term
+Rule 9     term -> factor
+Rule 10    factor -> VARIABLE
+Rule 11    factor -> LPAREN expression RPAREN
+
+Terminals, with rules where they appear
+
+AND                  : 1
+CNF                  : 5
+DNF                  : 4
+DOUBLE_NEGATION      : 7
+LPAREN               : 11
+NEGATION             : 6
+OR                   : 2
+RPAREN               : 11
+VARIABLE             : 10
+error                : 
+imp                  : 3
+
+Nonterminals, with rules where they appear
+
+expression           : 1 2 3 11 0
+factor               : 4 5 6 7 9
+term                 : 1 2 3 4 5 8
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . expression AND term
+    (2) expression -> . expression OR term
+    (3) expression -> . expression imp term
+    (8) expression -> . term
+    (4) term -> . term DNF factor
+    (5) term -> . term CNF factor
+    (9) term -> . factor
+    (6) factor -> . NEGATION factor
+    (7) factor -> . DOUBLE_NEGATION factor
+    (10) factor -> . VARIABLE
+    (11) factor -> . LPAREN expression RPAREN
+
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    VARIABLE        shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    expression                     shift and go to state 1
+    term                           shift and go to state 2
+    factor                         shift and go to state 3
+
+state 1
+
+    (0) S' -> expression .
+    (1) expression -> expression . AND term
+    (2) expression -> expression . OR term
+    (3) expression -> expression . imp term
+
+    AND             shift and go to state 8
+    OR              shift and go to state 9
+    imp             shift and go to state 10
+
+
+state 2
+
+    (8) expression -> term .
+    (4) term -> term . DNF factor
+    (5) term -> term . CNF factor
+
+    AND             reduce using rule 8 (expression -> term .)
+    OR              reduce using rule 8 (expression -> term .)
+    imp             reduce using rule 8 (expression -> term .)
+    $end            reduce using rule 8 (expression -> term .)
+    RPAREN          reduce using rule 8 (expression -> term .)
+    DNF             shift and go to state 11
+    CNF             shift and go to state 12
+
+
+state 3
+
+    (9) term -> factor .
+
+    DNF             reduce using rule 9 (term -> factor .)
+    CNF             reduce using rule 9 (term -> factor .)
+    AND             reduce using rule 9 (term -> factor .)
+    OR              reduce using rule 9 (term -> factor .)
+    imp             reduce using rule 9 (term -> factor .)
+    $end            reduce using rule 9 (term -> factor .)
+    RPAREN          reduce using rule 9 (term -> factor .)
+
+
+state 4
+
+    (6) factor -> NEGATION . factor
+    (6) factor -> . NEGATION factor
+    (7) factor -> . DOUBLE_NEGATION factor
+    (10) factor -> . VARIABLE
+    (11) factor -> . LPAREN expression RPAREN
+
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    VARIABLE        shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    factor                         shift and go to state 13
+
+state 5
+
+    (7) factor -> DOUBLE_NEGATION . factor
+    (6) factor -> . NEGATION factor
+    (7) factor -> . DOUBLE_NEGATION factor
+    (10) factor -> . VARIABLE
+    (11) factor -> . LPAREN expression RPAREN
+
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    VARIABLE        shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    factor                         shift and go to state 14
+
+state 6
+
+    (10) factor -> VARIABLE .
+
+    DNF             reduce using rule 10 (factor -> VARIABLE .)
+    CNF             reduce using rule 10 (factor -> VARIABLE .)
+    AND             reduce using rule 10 (factor -> VARIABLE .)
+    OR              reduce using rule 10 (factor -> VARIABLE .)
+    imp             reduce using rule 10 (factor -> VARIABLE .)
+    $end            reduce using rule 10 (factor -> VARIABLE .)
+    RPAREN          reduce using rule 10 (factor -> VARIABLE .)
+
+
+state 7
+
+    (11) factor -> LPAREN . expression RPAREN
+    (1) expression -> . expression AND term
+    (2) expression -> . expression OR term
+    (3) expression -> . expression imp term
+    (8) expression -> . term
+    (4) term -> . term DNF factor
+    (5) term -> . term CNF factor
+    (9) term -> . factor
+    (6) factor -> . NEGATION factor
+    (7) factor -> . DOUBLE_NEGATION factor
+    (10) factor -> . VARIABLE
+    (11) factor -> . LPAREN expression RPAREN
+
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    VARIABLE        shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    expression                     shift and go to state 15
+    term                           shift and go to state 2
+    factor                         shift and go to state 3
+
+state 8
+
+    (1) expression -> expression AND . term
+    (4) term -> . term DNF factor
+    (5) term -> . term CNF factor
+    (9) term -> . factor
+    (6) factor -> . NEGATION factor
+    (7) factor -> . DOUBLE_NEGATION factor
+    (10) factor -> . VARIABLE
+    (11) factor -> . LPAREN expression RPAREN
+
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    VARIABLE        shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    term                           shift and go to state 16
+    factor                         shift and go to state 3
+
+state 9
+
+    (2) expression -> expression OR . term
+    (4) term -> . term DNF factor
+    (5) term -> . term CNF factor
+    (9) term -> . factor
+    (6) factor -> . NEGATION factor
+    (7) factor -> . DOUBLE_NEGATION factor
+    (10) factor -> . VARIABLE
+    (11) factor -> . LPAREN expression RPAREN
+
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    VARIABLE        shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    term                           shift and go to state 17
+    factor                         shift and go to state 3
+
+state 10
+
+    (3) expression -> expression imp . term
+    (4) term -> . term DNF factor
+    (5) term -> . term CNF factor
+    (9) term -> . factor
+    (6) factor -> . NEGATION factor
+    (7) factor -> . DOUBLE_NEGATION factor
+    (10) factor -> . VARIABLE
+    (11) factor -> . LPAREN expression RPAREN
+
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    VARIABLE        shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    term                           shift and go to state 18
+    factor                         shift and go to state 3
+
+state 11
+
+    (4) term -> term DNF . factor
+    (6) factor -> . NEGATION factor
+    (7) factor -> . DOUBLE_NEGATION factor
+    (10) factor -> . VARIABLE
+    (11) factor -> . LPAREN expression RPAREN
+
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    VARIABLE        shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    factor                         shift and go to state 19
+
+state 12
+
+    (5) term -> term CNF . factor
+    (6) factor -> . NEGATION factor
+    (7) factor -> . DOUBLE_NEGATION factor
+    (10) factor -> . VARIABLE
+    (11) factor -> . LPAREN expression RPAREN
+
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    VARIABLE        shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    factor                         shift and go to state 20
+
+state 13
+
+    (6) factor -> NEGATION factor .
+
+    DNF             reduce using rule 6 (factor -> NEGATION factor .)
+    CNF             reduce using rule 6 (factor -> NEGATION factor .)
+    AND             reduce using rule 6 (factor -> NEGATION factor .)
+    OR              reduce using rule 6 (factor -> NEGATION factor .)
+    imp             reduce using rule 6 (factor -> NEGATION factor .)
+    $end            reduce using rule 6 (factor -> NEGATION factor .)
+    RPAREN          reduce using rule 6 (factor -> NEGATION factor .)
+
+
+state 14
+
+    (7) factor -> DOUBLE_NEGATION factor .
+
+    DNF             reduce using rule 7 (factor -> DOUBLE_NEGATION factor .)
+    CNF             reduce using rule 7 (factor -> DOUBLE_NEGATION factor .)
+    AND             reduce using rule 7 (factor -> DOUBLE_NEGATION factor .)
+    OR              reduce using rule 7 (factor -> DOUBLE_NEGATION factor .)
+    imp             reduce using rule 7 (factor -> DOUBLE_NEGATION factor .)
+    $end            reduce using rule 7 (factor -> DOUBLE_NEGATION factor .)
+    RPAREN          reduce using rule 7 (factor -> DOUBLE_NEGATION factor .)
+
+
+state 15
+
+    (11) factor -> LPAREN expression . RPAREN
+    (1) expression -> expression . AND term
+    (2) expression -> expression . OR term
+    (3) expression -> expression . imp term
+
+    RPAREN          shift and go to state 21
+    AND             shift and go to state 8
+    OR              shift and go to state 9
+    imp             shift and go to state 10
+
+
+state 16
+
+    (1) expression -> expression AND term .
+    (4) term -> term . DNF factor
+    (5) term -> term . CNF factor
+
+    AND             reduce using rule 1 (expression -> expression AND term .)
+    OR              reduce using rule 1 (expression -> expression AND term .)
+    imp             reduce using rule 1 (expression -> expression AND term .)
+    $end            reduce using rule 1 (expression -> expression AND term .)
+    RPAREN          reduce using rule 1 (expression -> expression AND term .)
+    DNF             shift and go to state 11
+    CNF             shift and go to state 12
+
+
+state 17
+
+    (2) expression -> expression OR term .
+    (4) term -> term . DNF factor
+    (5) term -> term . CNF factor
+
+    AND             reduce using rule 2 (expression -> expression OR term .)
+    OR              reduce using rule 2 (expression -> expression OR term .)
+    imp             reduce using rule 2 (expression -> expression OR term .)
+    $end            reduce using rule 2 (expression -> expression OR term .)
+    RPAREN          reduce using rule 2 (expression -> expression OR term .)
+    DNF             shift and go to state 11
+    CNF             shift and go to state 12
+
+
+state 18
+
+    (3) expression -> expression imp term .
+    (4) term -> term . DNF factor
+    (5) term -> term . CNF factor
+
+    AND             reduce using rule 3 (expression -> expression imp term .)
+    OR              reduce using rule 3 (expression -> expression imp term .)
+    imp             reduce using rule 3 (expression -> expression imp term .)
+    $end            reduce using rule 3 (expression -> expression imp term .)
+    RPAREN          reduce using rule 3 (expression -> expression imp term .)
+    DNF             shift and go to state 11
+    CNF             shift and go to state 12
+
+
+state 19
+
+    (4) term -> term DNF factor .
+
+    DNF             reduce using rule 4 (term -> term DNF factor .)
+    CNF             reduce using rule 4 (term -> term DNF factor .)
+    AND             reduce using rule 4 (term -> term DNF factor .)
+    OR              reduce using rule 4 (term -> term DNF factor .)
+    imp             reduce using rule 4 (term -> term DNF factor .)
+    $end            reduce using rule 4 (term -> term DNF factor .)
+    RPAREN          reduce using rule 4 (term -> term DNF factor .)
+
+
+state 20
+
+    (5) term -> term CNF factor .
+
+    DNF             reduce using rule 5 (term -> term CNF factor .)
+    CNF             reduce using rule 5 (term -> term CNF factor .)
+    AND             reduce using rule 5 (term -> term CNF factor .)
+    OR              reduce using rule 5 (term -> term CNF factor .)
+    imp             reduce using rule 5 (term -> term CNF factor .)
+    $end            reduce using rule 5 (term -> term CNF factor .)
+    RPAREN          reduce using rule 5 (term -> term CNF factor .)
+
+
+state 21
+
+    (11) factor -> LPAREN expression RPAREN .
+
+    DNF             reduce using rule 11 (factor -> LPAREN expression RPAREN .)
+    CNF             reduce using rule 11 (factor -> LPAREN expression RPAREN .)
+    AND             reduce using rule 11 (factor -> LPAREN expression RPAREN .)
+    OR              reduce using rule 11 (factor -> LPAREN expression RPAREN .)
+    imp             reduce using rule 11 (factor -> LPAREN expression RPAREN .)
+    $end            reduce using rule 11 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 11 (factor -> LPAREN expression RPAREN .)
+
