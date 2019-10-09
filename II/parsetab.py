@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND CNF DNF DOUBLE_NEGATION LPAREN NEGATION OR RPAREN VARIABLE impexpression : expression AND term\n                  | expression OR term\n                  | expression imp term\n\n    term          : term DNF factor\n                  | term CNF factor\n\n    factor        : NEGATION factor\n                  | DOUBLE_NEGATION factorexpression : termterm : factorfactor : VARIABLEfactor : LPAREN expression RPAREN'
+_lr_signature = 'AND DOUBLE_NEGATION IMP LPAREN NEGATION OR RPAREN VARIABLEexpression : VARIABLEfactor : LPAREN expression RPARENexpression  : expression AND expressionexpression  : expression AND factorexpression  : factor AND expressionexpression  : factor AND factorexpression  : expression OR expressionexpression  : expression OR factorexpression  : factor OR expressionexpression  : factor OR factorexpression  : expression IMP expressionexpression  : expression IMP factorexpression  : factor IMP expressionexpression  : factor IMP factorexpression  : NEGATION expressionexpression  : NEGATION factorexpression  : DOUBLE_NEGATION expressionexpression  : DOUBLE_NEGATION factor'
     
-_lr_action_items = {'NEGATION':([0,4,5,7,8,9,10,11,12,],[4,4,4,4,4,4,4,4,4,]),'DOUBLE_NEGATION':([0,4,5,7,8,9,10,11,12,],[5,5,5,5,5,5,5,5,5,]),'VARIABLE':([0,4,5,7,8,9,10,11,12,],[6,6,6,6,6,6,6,6,6,]),'LPAREN':([0,4,5,7,8,9,10,11,12,],[7,7,7,7,7,7,7,7,7,]),'$end':([1,2,3,6,13,14,16,17,18,19,20,21,],[0,-8,-9,-10,-6,-7,-1,-2,-3,-4,-5,-11,]),'AND':([1,2,3,6,13,14,15,16,17,18,19,20,21,],[8,-8,-9,-10,-6,-7,8,-1,-2,-3,-4,-5,-11,]),'OR':([1,2,3,6,13,14,15,16,17,18,19,20,21,],[9,-8,-9,-10,-6,-7,9,-1,-2,-3,-4,-5,-11,]),'imp':([1,2,3,6,13,14,15,16,17,18,19,20,21,],[10,-8,-9,-10,-6,-7,10,-1,-2,-3,-4,-5,-11,]),'RPAREN':([2,3,6,13,14,15,16,17,18,19,20,21,],[-8,-9,-10,-6,-7,21,-1,-2,-3,-4,-5,-11,]),'DNF':([2,3,6,13,14,16,17,18,19,20,21,],[11,-9,-10,-6,-7,11,11,11,-4,-5,-11,]),'CNF':([2,3,6,13,14,16,17,18,19,20,21,],[12,-9,-10,-6,-7,12,12,12,-4,-5,-11,]),}
+_lr_action_items = {'VARIABLE':([0,4,5,6,7,8,9,10,11,12,],[2,2,2,2,2,2,2,2,2,2,]),'NEGATION':([0,4,5,6,7,8,9,10,11,12,],[4,4,4,4,4,4,4,4,4,4,]),'DOUBLE_NEGATION':([0,4,5,6,7,8,9,10,11,12,],[5,5,5,5,5,5,5,5,5,5,]),'LPAREN':([0,4,5,6,7,8,9,10,11,12,],[6,6,6,6,6,6,6,6,6,6,]),'$end':([1,2,13,14,15,16,18,19,20,21,22,23,24,25,26,27,28,29,30,],[0,-1,-15,-16,-17,-18,-3,-4,-7,-8,-11,-12,-6,-5,-10,-9,-14,-13,-2,]),'AND':([1,2,3,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[7,-1,10,7,10,7,10,7,7,10,7,10,7,10,10,7,10,7,10,7,-2,]),'OR':([1,2,3,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[8,-1,11,8,11,8,11,8,8,11,8,11,8,11,11,8,11,8,11,8,-2,]),'IMP':([1,2,3,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[9,-1,12,9,12,9,12,9,9,12,9,12,9,12,12,9,12,9,12,9,-2,]),'RPAREN':([2,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[-1,-15,-16,-17,-18,30,-3,-4,-7,-8,-11,-12,-6,-5,-10,-9,-14,-13,-2,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,7,],[1,15,]),'term':([0,7,8,9,10,],[2,2,16,17,18,]),'factor':([0,4,5,7,8,9,10,11,12,],[3,13,14,3,3,3,3,19,20,]),}
+_lr_goto_items = {'expression':([0,4,5,6,7,8,9,10,11,12,],[1,13,15,17,18,20,22,25,27,29,]),'factor':([0,4,5,6,7,8,9,10,11,12,],[3,14,16,3,19,21,23,24,26,28,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,15 +27,22 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> expression AND term','expression',3,'p_binary_operators','calc_yacc.py',52),
-  ('expression -> expression OR term','expression',3,'p_binary_operators','calc_yacc.py',53),
-  ('expression -> expression imp term','expression',3,'p_binary_operators','calc_yacc.py',54),
-  ('term -> term DNF factor','term',3,'p_binary_operators','calc_yacc.py',56),
-  ('term -> term CNF factor','term',3,'p_binary_operators','calc_yacc.py',57),
-  ('factor -> NEGATION factor','factor',2,'p_binary_operators','calc_yacc.py',59),
-  ('factor -> DOUBLE_NEGATION factor','factor',2,'p_binary_operators','calc_yacc.py',60),
-  ('expression -> term','expression',1,'p_expression_term','calc_yacc.py',84),
-  ('term -> factor','term',1,'p_term_factor','calc_yacc.py',89),
-  ('factor -> VARIABLE','factor',1,'p_factor_variable','calc_yacc.py',94),
-  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','calc_yacc.py',99),
+  ('expression -> VARIABLE','expression',1,'p_expr_variable','calc_yacc.py',11),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','calc_yacc.py',16),
+  ('expression -> expression AND expression','expression',3,'p_and_exp_exp_operators','calc_yacc.py',22),
+  ('expression -> expression AND factor','expression',3,'p_and_exp_factor_operators','calc_yacc.py',27),
+  ('expression -> factor AND expression','expression',3,'p_and_factor_exp_operators','calc_yacc.py',32),
+  ('expression -> factor AND factor','expression',3,'p_and_factor_factor_operators','calc_yacc.py',37),
+  ('expression -> expression OR expression','expression',3,'p_or_exp_exp_operators','calc_yacc.py',43),
+  ('expression -> expression OR factor','expression',3,'p_or_exp_factor_operators','calc_yacc.py',48),
+  ('expression -> factor OR expression','expression',3,'p_or_factor_exp_operators','calc_yacc.py',53),
+  ('expression -> factor OR factor','expression',3,'p_or_factor_factor_operators','calc_yacc.py',58),
+  ('expression -> expression IMP expression','expression',3,'p_imp_exp_exp_operators','calc_yacc.py',64),
+  ('expression -> expression IMP factor','expression',3,'p_imp_exp_factor_operators','calc_yacc.py',69),
+  ('expression -> factor IMP expression','expression',3,'p_imp_factor_exp_operators','calc_yacc.py',74),
+  ('expression -> factor IMP factor','expression',3,'p_imp_factor_factor_operators','calc_yacc.py',79),
+  ('expression -> NEGATION expression','expression',2,'p_negation_exp_operators','calc_yacc.py',85),
+  ('expression -> NEGATION factor','expression',2,'p_negation_factor_operators','calc_yacc.py',90),
+  ('expression -> DOUBLE_NEGATION expression','expression',2,'p_double_negation_exp_operators','calc_yacc.py',95),
+  ('expression -> DOUBLE_NEGATION factor','expression',2,'p_double_negation_factor_operators','calc_yacc.py',100),
 ]

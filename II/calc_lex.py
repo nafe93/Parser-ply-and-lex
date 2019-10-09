@@ -13,29 +13,27 @@ class MyLexer(object):
         'VARIABLE',
         'AND',
         'OR',
-        'imp',
+        'IMP',
         'NEGATION',
         'DOUBLE_NEGATION',
         'LPAREN',
         'RPAREN',
-        'DNF',
-        'CNF'
     )
 
     # Регулярные выражения
     # логические работают с двумя переменными
     t_AND = r'/\\'
     t_OR = r'\\/'
-    t_imp = r'->'
-    # логические работают с одной переменной
+    t_IMP = r'->'
+    # # логические работают с одной переменной
     t_NEGATION = r'~'
     t_DOUBLE_NEGATION = r'~~'
     # Скопки
     t_LPAREN = r'\('
     t_RPAREN = r'\)'
     # Синтаксис
-    t_DNF = r'(/\\\(|\)/\\|\)/\\\()'
-    t_CNF = r'(\\/\(|\)\\/|\)\\/\()'
+    # t_DNF = r'(/\\\(|\)/\\|\)/\\\()'
+    # t_CNF = r'(\\/\(|\)\\/|\)\\/\()'
 
     # A regular expression
     def t_VARIABLE(self, t):

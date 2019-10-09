@@ -7,8 +7,8 @@ Rule 1     expression -> term
 Rule 2     term -> factor
 Rule 3     factor -> NUMBER
 Rule 4     factor -> CHARS
-Rule 5     term -> term CONJUNCTION factor
-Rule 6     term -> term DISJUNCTION factor
+Rule 5     expression -> expression CONJUNCTION term
+Rule 6     expression -> expression DISJUNCTION term
 Rule 7     expression -> expression IMPLICATION term
 Rule 8     factor -> NEGATION factor
 Rule 9     factor -> DNEGATION CHARS
@@ -29,8 +29,8 @@ error                :
 
 Nonterminals, with rules where they appear
 
-expression           : 7 10 0
-factor               : 2 5 6 8
+expression           : 5 6 7 10 0
+factor               : 2 8
 term                 : 1 5 6 7
 
 Parsing method: LALR
@@ -39,10 +39,10 @@ state 0
 
     (0) S' -> . expression
     (1) expression -> . term
+    (5) expression -> . expression CONJUNCTION term
+    (6) expression -> . expression DISJUNCTION term
     (7) expression -> . expression IMPLICATION term
     (2) term -> . factor
-    (5) term -> . term CONJUNCTION factor
-    (6) term -> . term DISJUNCTION factor
     (3) factor -> . NUMBER
     (4) factor -> . CHARS
     (8) factor -> . NEGATION factor
@@ -62,22 +62,24 @@ state 0
 state 1
 
     (0) S' -> expression .
+    (5) expression -> expression . CONJUNCTION term
+    (6) expression -> expression . DISJUNCTION term
     (7) expression -> expression . IMPLICATION term
 
-    IMPLICATION     shift and go to state 9
+    CONJUNCTION     shift and go to state 9
+    DISJUNCTION     shift and go to state 10
+    IMPLICATION     shift and go to state 11
 
 
 state 2
 
     (1) expression -> term .
-    (5) term -> term . CONJUNCTION factor
-    (6) term -> term . DISJUNCTION factor
 
+    CONJUNCTION     reduce using rule 1 (expression -> term .)
+    DISJUNCTION     reduce using rule 1 (expression -> term .)
     IMPLICATION     reduce using rule 1 (expression -> term .)
     $end            reduce using rule 1 (expression -> term .)
     RPAREN          reduce using rule 1 (expression -> term .)
-    CONJUNCTION     shift and go to state 10
-    DISJUNCTION     shift and go to state 11
 
 
 state 3
@@ -141,10 +143,10 @@ state 8
 
     (10) factor -> LPAREN . expression RPAREN
     (1) expression -> . term
+    (5) expression -> . expression CONJUNCTION term
+    (6) expression -> . expression DISJUNCTION term
     (7) expression -> . expression IMPLICATION term
     (2) term -> . factor
-    (5) term -> . term CONJUNCTION factor
-    (6) term -> . term DISJUNCTION factor
     (3) factor -> . NUMBER
     (4) factor -> . CHARS
     (8) factor -> . NEGATION factor
@@ -163,10 +165,8 @@ state 8
 
 state 9
 
-    (7) expression -> expression IMPLICATION . term
+    (5) expression -> expression CONJUNCTION . term
     (2) term -> . factor
-    (5) term -> . term CONJUNCTION factor
-    (6) term -> . term DISJUNCTION factor
     (3) factor -> . NUMBER
     (4) factor -> . CHARS
     (8) factor -> . NEGATION factor
@@ -184,7 +184,8 @@ state 9
 
 state 10
 
-    (5) term -> term CONJUNCTION . factor
+    (6) expression -> expression DISJUNCTION . term
+    (2) term -> . factor
     (3) factor -> . NUMBER
     (4) factor -> . CHARS
     (8) factor -> . NEGATION factor
@@ -197,11 +198,13 @@ state 10
     DNEGATION       shift and go to state 7
     LPAREN          shift and go to state 8
 
-    factor                         shift and go to state 16
+    term                           shift and go to state 16
+    factor                         shift and go to state 3
 
 state 11
 
-    (6) term -> term DISJUNCTION . factor
+    (7) expression -> expression IMPLICATION . term
+    (2) term -> . factor
     (3) factor -> . NUMBER
     (4) factor -> . CHARS
     (8) factor -> . NEGATION factor
@@ -214,7 +217,8 @@ state 11
     DNEGATION       shift and go to state 7
     LPAREN          shift and go to state 8
 
-    factor                         shift and go to state 17
+    term                           shift and go to state 17
+    factor                         shift and go to state 3
 
 state 12
 
@@ -241,45 +245,47 @@ state 13
 state 14
 
     (10) factor -> LPAREN expression . RPAREN
+    (5) expression -> expression . CONJUNCTION term
+    (6) expression -> expression . DISJUNCTION term
     (7) expression -> expression . IMPLICATION term
 
     RPAREN          shift and go to state 18
-    IMPLICATION     shift and go to state 9
+    CONJUNCTION     shift and go to state 9
+    DISJUNCTION     shift and go to state 10
+    IMPLICATION     shift and go to state 11
 
 
 state 15
 
-    (7) expression -> expression IMPLICATION term .
-    (5) term -> term . CONJUNCTION factor
-    (6) term -> term . DISJUNCTION factor
+    (5) expression -> expression CONJUNCTION term .
 
-    IMPLICATION     reduce using rule 7 (expression -> expression IMPLICATION term .)
-    $end            reduce using rule 7 (expression -> expression IMPLICATION term .)
-    RPAREN          reduce using rule 7 (expression -> expression IMPLICATION term .)
-    CONJUNCTION     shift and go to state 10
-    DISJUNCTION     shift and go to state 11
+    CONJUNCTION     reduce using rule 5 (expression -> expression CONJUNCTION term .)
+    DISJUNCTION     reduce using rule 5 (expression -> expression CONJUNCTION term .)
+    IMPLICATION     reduce using rule 5 (expression -> expression CONJUNCTION term .)
+    $end            reduce using rule 5 (expression -> expression CONJUNCTION term .)
+    RPAREN          reduce using rule 5 (expression -> expression CONJUNCTION term .)
 
 
 state 16
 
-    (5) term -> term CONJUNCTION factor .
+    (6) expression -> expression DISJUNCTION term .
 
-    CONJUNCTION     reduce using rule 5 (term -> term CONJUNCTION factor .)
-    DISJUNCTION     reduce using rule 5 (term -> term CONJUNCTION factor .)
-    IMPLICATION     reduce using rule 5 (term -> term CONJUNCTION factor .)
-    $end            reduce using rule 5 (term -> term CONJUNCTION factor .)
-    RPAREN          reduce using rule 5 (term -> term CONJUNCTION factor .)
+    CONJUNCTION     reduce using rule 6 (expression -> expression DISJUNCTION term .)
+    DISJUNCTION     reduce using rule 6 (expression -> expression DISJUNCTION term .)
+    IMPLICATION     reduce using rule 6 (expression -> expression DISJUNCTION term .)
+    $end            reduce using rule 6 (expression -> expression DISJUNCTION term .)
+    RPAREN          reduce using rule 6 (expression -> expression DISJUNCTION term .)
 
 
 state 17
 
-    (6) term -> term DISJUNCTION factor .
+    (7) expression -> expression IMPLICATION term .
 
-    CONJUNCTION     reduce using rule 6 (term -> term DISJUNCTION factor .)
-    DISJUNCTION     reduce using rule 6 (term -> term DISJUNCTION factor .)
-    IMPLICATION     reduce using rule 6 (term -> term DISJUNCTION factor .)
-    $end            reduce using rule 6 (term -> term DISJUNCTION factor .)
-    RPAREN          reduce using rule 6 (term -> term DISJUNCTION factor .)
+    CONJUNCTION     reduce using rule 7 (expression -> expression IMPLICATION term .)
+    DISJUNCTION     reduce using rule 7 (expression -> expression IMPLICATION term .)
+    IMPLICATION     reduce using rule 7 (expression -> expression IMPLICATION term .)
+    $end            reduce using rule 7 (expression -> expression IMPLICATION term .)
+    RPAREN          reduce using rule 7 (expression -> expression IMPLICATION term .)
 
 
 state 18

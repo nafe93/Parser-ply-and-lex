@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="730ee2a9-fd25-420a-9edc-63dee4f46c0f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../II/.idea/libraries/R_User_Library.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../II/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../II/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../II/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calclex.py" beforeDir="false" afterPath="$PROJECT_DIR$/calclex.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calcyacc.py" beforeDir="false" afterPath="$PROJECT_DIR$/calcyacc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsetab.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../II/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../II/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../II/calc_lex.py" beforeDir="false" afterPath="$PROJECT_DIR$/../II/calc_lex.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../II/calc_yacc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../II/calc_yacc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../II/parser.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../II/parsetab.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,36 +18,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/calclex.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" column="16" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/calcyacc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="50" column="13" lean-forward="true" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="23" />
+            <state relative-caret-position="575">
+              <caret line="66" column="34" lean-forward="true" selection-start-line="53" selection-start-column="4" selection-end-line="66" selection-end-column="34" />
               <folding>
                 <element signature="e#10#33#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/ply/yacc.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85650">
-              <caret line="3431" selection-start-line="3431" selection-end-line="3431" />
             </state>
           </provider>
         </entry>
@@ -64,8 +42,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>PLUS</find>
-      <find>CHARS</find>
       <find>MINUS</find>
       <find>NUMBER</find>
       <find>Syntax error in inpu</find>
@@ -81,7 +57,6 @@
       <find>NDISJUNCTION</find>
       <find>NCONJUNCTION</find>
       <find>for</find>
-      <find>factor</find>
       <find>expression</find>
       <find>expression :</find>
       <find>YaccProduction</find>
@@ -94,6 +69,9 @@
       <find>print</find>
       <find>number</find>
       <find>term</find>
+      <find>t_NEGATION</find>
+      <find>factor</find>
+      <find>NEGATION</find>
     </findStrings>
     <replaceStrings>
       <replace>morgan</replace>
@@ -267,17 +245,22 @@
       <workItem from="1570608662318" duration="159000" />
       <workItem from="1570608848360" duration="101000" />
       <workItem from="1570609669298" duration="2165000" />
+      <workItem from="1570627448645" duration="271000" />
+      <workItem from="1570627749566" duration="256000" />
+      <workItem from="1570631621606" duration="29000" />
+      <workItem from="1570635327426" duration="52000" />
+      <workItem from="1570635549764" duration="180000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71686000" />
+    <option name="totallyTimeSpent" value="72474000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27132195" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2867804" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -307,7 +290,7 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/I$calcyacc.coverage" NAME="calcyacc Coverage Results" MODIFIED="1570610498979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/I$calcyacc.coverage" NAME="calcyacc Coverage Results" MODIFIED="1570627763930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/I$main.coverage" NAME="main Coverage Results" MODIFIED="1570389584682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/I$calclex.coverage" NAME="calclex Coverage Results" MODIFIED="1570575068528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -325,27 +308,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/ply/yacc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85650">
-          <caret line="3431" selection-start-line="3431" selection-end-line="3431" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/calclex.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="16" />
+        <state relative-caret-position="625">
+          <caret line="25" column="10" selection-start-line="25" selection-end-line="25" selection-end-column="10" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/ply/yacc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="794">
+          <caret line="3431" selection-start-line="3431" selection-end-line="3431" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/calcyacc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="50" column="13" lean-forward="true" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="23" />
+        <state relative-caret-position="575">
+          <caret line="66" column="34" lean-forward="true" selection-start-line="53" selection-start-column="4" selection-end-line="66" selection-end-column="34" />
           <folding>
             <element signature="e#10#33#0" expanded="true" />
           </folding>

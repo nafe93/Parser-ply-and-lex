@@ -6,101 +6,133 @@ from calc_lex import MyLexer
 tokens = MyLexer().tokens
 
 
-# просты булевые операции
-
-def p_and_operators(p):
-    p[0] = p[1] + '/\\' + p[3]
-    return p[0]
-
-
-def p_or_operators(p):
-    p[0] = p[1] + '\\/' + p[3]
-    return p[0]
-
-
-def p_imp_operator(p):
-    p[0] = '~' + p[1] + '\\/' + p[3]
-    return p[0]
-
-
-# Алгоиритмы отрицания, двойного отрицания и де моргана
-
-
-def p_negation_operators(p):
-    p[0] = p[1] + p[2]
-    return p[0]
-
-
-def p_double_negation_operators(p):
-    p[0] = p[2]
-    return p[0]
-
-
-# Алгоритмы диструбутивнасти
-
-# def p_dnf_operators(p):
-#     p[0] = p[1]
-#     return p[0]
-#
-#
-# def p_cnf_operators(p):
-#     p[0] = p[1]
-#     return p[0]
-
-
-def p_binary_operators(p):
-    '''expression : expression AND term
-                  | expression OR term
-                  | expression imp term
-
-    term          : term DNF factor
-                  | term CNF factor
-
-    factor        : NEGATION factor
-                  | DOUBLE_NEGATION factor'''
-
-    # boolean simple
-    if p[2] == '/\\':
-        p_and_operators(p)
-    elif p[2] == '\\/':
-        p_or_operators(p)
-    elif p[2] == '->':
-        p_imp_operator(p)
-
-    # distributive for cnf and dnf
-    elif p[2] == '/\\\(' or p[2] == '\)/\\' or p[2] == '\)/\\\(':
-        print("test")
-    elif p[2] == '\\/\(' or p[2] == '\)\\/' or p[2] == '\)\\/\(':
-        print("test")
-
-    # de morgan and negation
-    elif p[1] == '~':
-        p_negation_operators(p)
-    elif p[1] == '~~':
-        p_double_negation_operators(p)
-
-
-def p_expression_term(p):
-    'expression : term'
-    p[0] = p[1]
-
-
-def p_term_factor(p):
-    'term : factor'
-    p[0] = p[1]
-
-
-def p_factor_variable(p):
-    'factor : VARIABLE'
+# Переменные
+def p_expr_variable(p):
+    'expression : VARIABLE'
     p[0] = p[1]
 
 
 def p_factor_expr(p):
-    'factor : LPAREN expression RPAREN'
-    p[0] = p[1]
+    '''factor : LPAREN expression RPAREN'''
+    p[0] = p[1] + p[2] + p[3]
 
 
-# Error rule for syntax errors
+# Операции над AND
+def p_and_exp_exp_operators(p):
+    '''expression  : expression AND expression'''
+    p[0] = p[1] + '/\\' + p[3]
+
+
+def p_and_exp_factor_operators(p):
+    '''expression  : expression AND factor'''
+    variable = p[1]
+    factor = list(p[3])
+
+    if factor[0] == '(':
+        for i, v in enumerate(factor):
+            if factor[i] == '(' or factor[i] == ')':
+                factor[i] = ""
+            elif factor[i] == '/':
+                factor[i] == ""
+            elif factor[i] == '\\':
+                factor[i] == ""
+            else:
+                factor[i] = "(" + str(p[1]) + "/\\" + v + ")"
+        p[0] = "(" + "".join(factor) + ")"
+    else:
+        p[0] = p[1] + "/\\" + p[3]
+
+
+
+
+def p_and_factor_exp_operators(p):
+    '''expression  : factor AND expression'''
+    p[0] = p[1] + '/\\' + p[3]
+
+
+def p_and_factor_factor_operators(p):
+    '''expression  : factor AND factor'''
+    p[0] = p[1] + '/\\' + p[3]
+
+
+# Операции над OR
+def p_or_exp_exp_operators(p):
+    '''expression  : expression OR expression'''
+    p[0] = p[1] + '\\/' + p[3]
+
+
+def p_or_exp_factor_operators(p):
+    '''expression  : expression OR factor'''
+    p[0] = p[1] + '\\/' + p[3]
+
+
+def p_or_factor_exp_operators(p):
+    '''expression  : factor OR expression'''
+    p[0] = p[1] + '\\/' + p[3]
+
+
+def p_or_factor_factor_operators(p):
+    '''expression  : factor OR factor'''
+    p[0] = '~' + p[1] + '\\/' + p[3]
+
+
+# Операции над imp
+def p_imp_exp_exp_operators(p):
+    '''expression  : expression IMP expression'''
+    p[0] = '~' + p[1] + '\\/' + p[3]
+
+
+def p_imp_exp_factor_operators(p):
+    '''expression  : expression IMP factor'''
+    p[0] = '~' + p[1] + '\\/' + p[3]
+
+
+def p_imp_factor_exp_operators(p):
+    '''expression  : factor IMP expression'''
+    p[0] = '~' + p[1] + '\\/' + p[3]
+
+
+def p_imp_factor_factor_operators(p):
+    '''expression  : factor IMP factor'''
+    p[0] = p[1] + '\\/' + p[3]
+
+
+# Отрицание
+def p_negation_exp_operators(p):
+    '''expression  : NEGATION expression'''
+    p[0] = p[1] + p[2]
+
+
+def p_negation_factor_operators(p):
+    '''expression  : NEGATION factor'''
+    factor = list(p[2])
+
+    for i, val in enumerate(factor):
+        if val == '(' or val == ')':
+            factor[i] = val
+        elif val == '~':
+            factor[i] = '~'
+        elif val == '\\':
+            factor[i] = '/'
+        elif val == '/':
+            factor[i] = '\\'
+        else:
+            factor[i] = "~" + val
+    p[0] = ''.join(factor)
+
+
+
+def p_double_negation_exp_operators(p):
+    '''expression  : DOUBLE_NEGATION expression'''
+    p[0] = p[2]
+
+
+def p_double_negation_factor_operators(p):
+    '''expression  : DOUBLE_NEGATION factor'''
+    p[0] = p[2]
+
+
+# Синтаксическая ошибка
 def p_error(p):
     print("Синтаксическая ошибка в воде данных!")
 

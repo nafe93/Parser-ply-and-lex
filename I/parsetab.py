@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CHARS CONJUNCTION DISJUNCTION DNEGATION IMPLICATION LPAREN NEGATION NUMBER RPARENexpression : termterm : factorfactor : NUMBERfactor : CHARSterm : term CONJUNCTION factorterm : term DISJUNCTION factorexpression : expression IMPLICATION termfactor : NEGATION factorfactor : DNEGATION CHARSfactor : LPAREN expression RPAREN'
+_lr_signature = 'CHARS CONJUNCTION DISJUNCTION DNEGATION IMPLICATION LPAREN NEGATION NUMBER RPARENexpression : termterm : factorfactor : NUMBERfactor : CHARSexpression : expression CONJUNCTION termexpression : expression DISJUNCTION termexpression : expression IMPLICATION termfactor : NEGATION factorfactor : DNEGATION CHARSfactor : LPAREN expression RPAREN'
     
-_lr_action_items = {'NUMBER':([0,6,8,9,10,11,],[4,4,4,4,4,4,]),'CHARS':([0,6,7,8,9,10,11,],[5,5,13,5,5,5,5,]),'NEGATION':([0,6,8,9,10,11,],[6,6,6,6,6,6,]),'DNEGATION':([0,6,8,9,10,11,],[7,7,7,7,7,7,]),'LPAREN':([0,6,8,9,10,11,],[8,8,8,8,8,8,]),'$end':([1,2,3,4,5,12,13,15,16,17,18,],[0,-1,-2,-3,-4,-8,-9,-7,-5,-6,-10,]),'IMPLICATION':([1,2,3,4,5,12,13,14,15,16,17,18,],[9,-1,-2,-3,-4,-8,-9,9,-7,-5,-6,-10,]),'RPAREN':([2,3,4,5,12,13,14,15,16,17,18,],[-1,-2,-3,-4,-8,-9,18,-7,-5,-6,-10,]),'CONJUNCTION':([2,3,4,5,12,13,15,16,17,18,],[10,-2,-3,-4,-8,-9,10,-5,-6,-10,]),'DISJUNCTION':([2,3,4,5,12,13,15,16,17,18,],[11,-2,-3,-4,-8,-9,11,-5,-6,-10,]),}
+_lr_action_items = {'NUMBER':([0,6,8,9,10,11,],[4,4,4,4,4,4,]),'CHARS':([0,6,7,8,9,10,11,],[5,5,13,5,5,5,5,]),'NEGATION':([0,6,8,9,10,11,],[6,6,6,6,6,6,]),'DNEGATION':([0,6,8,9,10,11,],[7,7,7,7,7,7,]),'LPAREN':([0,6,8,9,10,11,],[8,8,8,8,8,8,]),'$end':([1,2,3,4,5,12,13,15,16,17,18,],[0,-1,-2,-3,-4,-8,-9,-5,-6,-7,-10,]),'CONJUNCTION':([1,2,3,4,5,12,13,14,15,16,17,18,],[9,-1,-2,-3,-4,-8,-9,9,-5,-6,-7,-10,]),'DISJUNCTION':([1,2,3,4,5,12,13,14,15,16,17,18,],[10,-1,-2,-3,-4,-8,-9,10,-5,-6,-7,-10,]),'IMPLICATION':([1,2,3,4,5,12,13,14,15,16,17,18,],[11,-1,-2,-3,-4,-8,-9,11,-5,-6,-7,-10,]),'RPAREN':([2,3,4,5,12,13,14,15,16,17,18,],[-1,-2,-3,-4,-8,-9,18,-5,-6,-7,-10,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,8,],[1,14,]),'term':([0,8,9,],[2,2,15,]),'factor':([0,6,8,9,10,11,],[3,12,3,3,16,17,]),}
+_lr_goto_items = {'expression':([0,8,],[1,14,]),'term':([0,8,9,10,11,],[2,2,15,16,17,]),'factor':([0,6,8,9,10,11,],[3,12,3,3,3,3,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -31,8 +31,8 @@ _lr_productions = [
   ('term -> factor','term',1,'p_term_factor','calcyacc.py',37),
   ('factor -> NUMBER','factor',1,'p_factor_number','calcyacc.py',42),
   ('factor -> CHARS','factor',1,'p_factor_chars','calcyacc.py',47),
-  ('term -> term CONJUNCTION factor','term',3,'p_factor_conjuction','calcyacc.py',52),
-  ('term -> term DISJUNCTION factor','term',3,'p_factor_disjunction','calcyacc.py',74),
+  ('expression -> expression CONJUNCTION term','expression',3,'p_factor_conjuction','calcyacc.py',52),
+  ('expression -> expression DISJUNCTION term','expression',3,'p_factor_disjunction','calcyacc.py',74),
   ('expression -> expression IMPLICATION term','expression',3,'p_factor_implication','calcyacc.py',95),
   ('factor -> NEGATION factor','factor',2,'p_factor_negation','calcyacc.py',100),
   ('factor -> DNEGATION CHARS','factor',2,'p_factor_dnegation','calcyacc.py',122),
