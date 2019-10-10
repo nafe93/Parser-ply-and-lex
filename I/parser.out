@@ -3,298 +3,907 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Grammar
 
 Rule 0     S' -> expression
-Rule 1     expression -> term
-Rule 2     term -> factor
-Rule 3     factor -> NUMBER
-Rule 4     factor -> CHARS
-Rule 5     expression -> expression CONJUNCTION term
-Rule 6     expression -> expression DISJUNCTION term
-Rule 7     expression -> expression IMPLICATION term
-Rule 8     factor -> NEGATION factor
-Rule 9     factor -> DNEGATION CHARS
-Rule 10    factor -> LPAREN expression RPAREN
+Rule 1     expression -> VARIABLE
+Rule 2     factor -> LPAREN expression RPAREN
+Rule 3     predicate -> LPAREN expression RPAREN
+Rule 4     expression -> expression AND expression
+Rule 5     expression -> expression AND factor
+Rule 6     expression -> factor AND expression
+Rule 7     expression -> factor AND factor
+Rule 8     expression -> expression OR expression
+Rule 9     expression -> expression OR factor
+Rule 10    expression -> factor OR expression
+Rule 11    expression -> factor OR factor
+Rule 12    expression -> expression IMP expression
+Rule 13    expression -> expression IMP factor
+Rule 14    expression -> factor IMP expression
+Rule 15    expression -> factor IMP factor
+Rule 16    expression -> NEGATION expression
+Rule 17    expression -> NEGATION predicate
+Rule 18    expression -> DOUBLE_NEGATION expression
+Rule 19    expression -> DOUBLE_NEGATION factor
 
 Terminals, with rules where they appear
 
-CHARS                : 4 9
-CONJUNCTION          : 5
-DISJUNCTION          : 6
-DNEGATION            : 9
-IMPLICATION          : 7
-LPAREN               : 10
-NEGATION             : 8
-NUMBER               : 3
-RPAREN               : 10
+AND                  : 4 5 6 7
+DOUBLE_NEGATION      : 18 19
+IMP                  : 12 13 14 15
+LPAREN               : 2 3
+NEGATION             : 16 17
+OR                   : 8 9 10 11
+RPAREN               : 2 3
+VARIABLE             : 1
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 5 6 7 10 0
-factor               : 2 8
-term                 : 1 5 6 7
+expression           : 2 3 4 4 5 6 8 8 9 10 12 12 13 14 16 18 0
+factor               : 5 6 7 7 9 10 11 11 13 14 15 15 19
+predicate            : 17
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . expression
-    (1) expression -> . term
-    (5) expression -> . expression CONJUNCTION term
-    (6) expression -> . expression DISJUNCTION term
-    (7) expression -> . expression IMPLICATION term
-    (2) term -> . factor
-    (3) factor -> . NUMBER
-    (4) factor -> . CHARS
-    (8) factor -> . NEGATION factor
-    (9) factor -> . DNEGATION CHARS
-    (10) factor -> . LPAREN expression RPAREN
+    (1) expression -> . VARIABLE
+    (4) expression -> . expression AND expression
+    (5) expression -> . expression AND factor
+    (6) expression -> . factor AND expression
+    (7) expression -> . factor AND factor
+    (8) expression -> . expression OR expression
+    (9) expression -> . expression OR factor
+    (10) expression -> . factor OR expression
+    (11) expression -> . factor OR factor
+    (12) expression -> . expression IMP expression
+    (13) expression -> . expression IMP factor
+    (14) expression -> . factor IMP expression
+    (15) expression -> . factor IMP factor
+    (16) expression -> . NEGATION expression
+    (17) expression -> . NEGATION predicate
+    (18) expression -> . DOUBLE_NEGATION expression
+    (19) expression -> . DOUBLE_NEGATION factor
+    (2) factor -> . LPAREN expression RPAREN
 
-    NUMBER          shift and go to state 4
-    CHARS           shift and go to state 5
-    NEGATION        shift and go to state 6
-    DNEGATION       shift and go to state 7
-    LPAREN          shift and go to state 8
+    VARIABLE        shift and go to state 2
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    LPAREN          shift and go to state 6
 
     expression                     shift and go to state 1
-    term                           shift and go to state 2
     factor                         shift and go to state 3
 
 state 1
 
     (0) S' -> expression .
-    (5) expression -> expression . CONJUNCTION term
-    (6) expression -> expression . DISJUNCTION term
-    (7) expression -> expression . IMPLICATION term
+    (4) expression -> expression . AND expression
+    (5) expression -> expression . AND factor
+    (8) expression -> expression . OR expression
+    (9) expression -> expression . OR factor
+    (12) expression -> expression . IMP expression
+    (13) expression -> expression . IMP factor
 
-    CONJUNCTION     shift and go to state 9
-    DISJUNCTION     shift and go to state 10
-    IMPLICATION     shift and go to state 11
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+    IMP             shift and go to state 9
 
 
 state 2
 
-    (1) expression -> term .
+    (1) expression -> VARIABLE .
 
-    CONJUNCTION     reduce using rule 1 (expression -> term .)
-    DISJUNCTION     reduce using rule 1 (expression -> term .)
-    IMPLICATION     reduce using rule 1 (expression -> term .)
-    $end            reduce using rule 1 (expression -> term .)
-    RPAREN          reduce using rule 1 (expression -> term .)
+    AND             reduce using rule 1 (expression -> VARIABLE .)
+    OR              reduce using rule 1 (expression -> VARIABLE .)
+    IMP             reduce using rule 1 (expression -> VARIABLE .)
+    $end            reduce using rule 1 (expression -> VARIABLE .)
+    RPAREN          reduce using rule 1 (expression -> VARIABLE .)
 
 
 state 3
 
-    (2) term -> factor .
+    (6) expression -> factor . AND expression
+    (7) expression -> factor . AND factor
+    (10) expression -> factor . OR expression
+    (11) expression -> factor . OR factor
+    (14) expression -> factor . IMP expression
+    (15) expression -> factor . IMP factor
 
-    CONJUNCTION     reduce using rule 2 (term -> factor .)
-    DISJUNCTION     reduce using rule 2 (term -> factor .)
-    IMPLICATION     reduce using rule 2 (term -> factor .)
-    $end            reduce using rule 2 (term -> factor .)
-    RPAREN          reduce using rule 2 (term -> factor .)
+    AND             shift and go to state 10
+    OR              shift and go to state 11
+    IMP             shift and go to state 12
 
 
 state 4
 
-    (3) factor -> NUMBER .
+    (16) expression -> NEGATION . expression
+    (17) expression -> NEGATION . predicate
+    (1) expression -> . VARIABLE
+    (4) expression -> . expression AND expression
+    (5) expression -> . expression AND factor
+    (6) expression -> . factor AND expression
+    (7) expression -> . factor AND factor
+    (8) expression -> . expression OR expression
+    (9) expression -> . expression OR factor
+    (10) expression -> . factor OR expression
+    (11) expression -> . factor OR factor
+    (12) expression -> . expression IMP expression
+    (13) expression -> . expression IMP factor
+    (14) expression -> . factor IMP expression
+    (15) expression -> . factor IMP factor
+    (16) expression -> . NEGATION expression
+    (17) expression -> . NEGATION predicate
+    (18) expression -> . DOUBLE_NEGATION expression
+    (19) expression -> . DOUBLE_NEGATION factor
+    (3) predicate -> . LPAREN expression RPAREN
+    (2) factor -> . LPAREN expression RPAREN
 
-    CONJUNCTION     reduce using rule 3 (factor -> NUMBER .)
-    DISJUNCTION     reduce using rule 3 (factor -> NUMBER .)
-    IMPLICATION     reduce using rule 3 (factor -> NUMBER .)
-    $end            reduce using rule 3 (factor -> NUMBER .)
-    RPAREN          reduce using rule 3 (factor -> NUMBER .)
+    VARIABLE        shift and go to state 2
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    LPAREN          shift and go to state 15
 
+    expression                     shift and go to state 13
+    predicate                      shift and go to state 14
+    factor                         shift and go to state 3
 
 state 5
 
-    (4) factor -> CHARS .
+    (18) expression -> DOUBLE_NEGATION . expression
+    (19) expression -> DOUBLE_NEGATION . factor
+    (1) expression -> . VARIABLE
+    (4) expression -> . expression AND expression
+    (5) expression -> . expression AND factor
+    (6) expression -> . factor AND expression
+    (7) expression -> . factor AND factor
+    (8) expression -> . expression OR expression
+    (9) expression -> . expression OR factor
+    (10) expression -> . factor OR expression
+    (11) expression -> . factor OR factor
+    (12) expression -> . expression IMP expression
+    (13) expression -> . expression IMP factor
+    (14) expression -> . factor IMP expression
+    (15) expression -> . factor IMP factor
+    (16) expression -> . NEGATION expression
+    (17) expression -> . NEGATION predicate
+    (18) expression -> . DOUBLE_NEGATION expression
+    (19) expression -> . DOUBLE_NEGATION factor
+    (2) factor -> . LPAREN expression RPAREN
 
-    CONJUNCTION     reduce using rule 4 (factor -> CHARS .)
-    DISJUNCTION     reduce using rule 4 (factor -> CHARS .)
-    IMPLICATION     reduce using rule 4 (factor -> CHARS .)
-    $end            reduce using rule 4 (factor -> CHARS .)
-    RPAREN          reduce using rule 4 (factor -> CHARS .)
+    VARIABLE        shift and go to state 2
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    LPAREN          shift and go to state 6
 
+    expression                     shift and go to state 16
+    factor                         shift and go to state 17
 
 state 6
 
-    (8) factor -> NEGATION . factor
-    (3) factor -> . NUMBER
-    (4) factor -> . CHARS
-    (8) factor -> . NEGATION factor
-    (9) factor -> . DNEGATION CHARS
-    (10) factor -> . LPAREN expression RPAREN
+    (2) factor -> LPAREN . expression RPAREN
+    (1) expression -> . VARIABLE
+    (4) expression -> . expression AND expression
+    (5) expression -> . expression AND factor
+    (6) expression -> . factor AND expression
+    (7) expression -> . factor AND factor
+    (8) expression -> . expression OR expression
+    (9) expression -> . expression OR factor
+    (10) expression -> . factor OR expression
+    (11) expression -> . factor OR factor
+    (12) expression -> . expression IMP expression
+    (13) expression -> . expression IMP factor
+    (14) expression -> . factor IMP expression
+    (15) expression -> . factor IMP factor
+    (16) expression -> . NEGATION expression
+    (17) expression -> . NEGATION predicate
+    (18) expression -> . DOUBLE_NEGATION expression
+    (19) expression -> . DOUBLE_NEGATION factor
+    (2) factor -> . LPAREN expression RPAREN
 
-    NUMBER          shift and go to state 4
-    CHARS           shift and go to state 5
-    NEGATION        shift and go to state 6
-    DNEGATION       shift and go to state 7
-    LPAREN          shift and go to state 8
+    VARIABLE        shift and go to state 2
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    LPAREN          shift and go to state 6
 
-    factor                         shift and go to state 12
+    expression                     shift and go to state 18
+    factor                         shift and go to state 3
 
 state 7
 
-    (9) factor -> DNEGATION . CHARS
+    (4) expression -> expression AND . expression
+    (5) expression -> expression AND . factor
+    (1) expression -> . VARIABLE
+    (4) expression -> . expression AND expression
+    (5) expression -> . expression AND factor
+    (6) expression -> . factor AND expression
+    (7) expression -> . factor AND factor
+    (8) expression -> . expression OR expression
+    (9) expression -> . expression OR factor
+    (10) expression -> . factor OR expression
+    (11) expression -> . factor OR factor
+    (12) expression -> . expression IMP expression
+    (13) expression -> . expression IMP factor
+    (14) expression -> . factor IMP expression
+    (15) expression -> . factor IMP factor
+    (16) expression -> . NEGATION expression
+    (17) expression -> . NEGATION predicate
+    (18) expression -> . DOUBLE_NEGATION expression
+    (19) expression -> . DOUBLE_NEGATION factor
+    (2) factor -> . LPAREN expression RPAREN
 
-    CHARS           shift and go to state 13
+    VARIABLE        shift and go to state 2
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    LPAREN          shift and go to state 6
 
+    expression                     shift and go to state 19
+    factor                         shift and go to state 20
 
 state 8
 
-    (10) factor -> LPAREN . expression RPAREN
-    (1) expression -> . term
-    (5) expression -> . expression CONJUNCTION term
-    (6) expression -> . expression DISJUNCTION term
-    (7) expression -> . expression IMPLICATION term
-    (2) term -> . factor
-    (3) factor -> . NUMBER
-    (4) factor -> . CHARS
-    (8) factor -> . NEGATION factor
-    (9) factor -> . DNEGATION CHARS
-    (10) factor -> . LPAREN expression RPAREN
+    (8) expression -> expression OR . expression
+    (9) expression -> expression OR . factor
+    (1) expression -> . VARIABLE
+    (4) expression -> . expression AND expression
+    (5) expression -> . expression AND factor
+    (6) expression -> . factor AND expression
+    (7) expression -> . factor AND factor
+    (8) expression -> . expression OR expression
+    (9) expression -> . expression OR factor
+    (10) expression -> . factor OR expression
+    (11) expression -> . factor OR factor
+    (12) expression -> . expression IMP expression
+    (13) expression -> . expression IMP factor
+    (14) expression -> . factor IMP expression
+    (15) expression -> . factor IMP factor
+    (16) expression -> . NEGATION expression
+    (17) expression -> . NEGATION predicate
+    (18) expression -> . DOUBLE_NEGATION expression
+    (19) expression -> . DOUBLE_NEGATION factor
+    (2) factor -> . LPAREN expression RPAREN
 
-    NUMBER          shift and go to state 4
-    CHARS           shift and go to state 5
-    NEGATION        shift and go to state 6
-    DNEGATION       shift and go to state 7
-    LPAREN          shift and go to state 8
+    VARIABLE        shift and go to state 2
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    LPAREN          shift and go to state 6
 
-    expression                     shift and go to state 14
-    term                           shift and go to state 2
-    factor                         shift and go to state 3
+    expression                     shift and go to state 21
+    factor                         shift and go to state 22
 
 state 9
 
-    (5) expression -> expression CONJUNCTION . term
-    (2) term -> . factor
-    (3) factor -> . NUMBER
-    (4) factor -> . CHARS
-    (8) factor -> . NEGATION factor
-    (9) factor -> . DNEGATION CHARS
-    (10) factor -> . LPAREN expression RPAREN
+    (12) expression -> expression IMP . expression
+    (13) expression -> expression IMP . factor
+    (1) expression -> . VARIABLE
+    (4) expression -> . expression AND expression
+    (5) expression -> . expression AND factor
+    (6) expression -> . factor AND expression
+    (7) expression -> . factor AND factor
+    (8) expression -> . expression OR expression
+    (9) expression -> . expression OR factor
+    (10) expression -> . factor OR expression
+    (11) expression -> . factor OR factor
+    (12) expression -> . expression IMP expression
+    (13) expression -> . expression IMP factor
+    (14) expression -> . factor IMP expression
+    (15) expression -> . factor IMP factor
+    (16) expression -> . NEGATION expression
+    (17) expression -> . NEGATION predicate
+    (18) expression -> . DOUBLE_NEGATION expression
+    (19) expression -> . DOUBLE_NEGATION factor
+    (2) factor -> . LPAREN expression RPAREN
 
-    NUMBER          shift and go to state 4
-    CHARS           shift and go to state 5
-    NEGATION        shift and go to state 6
-    DNEGATION       shift and go to state 7
-    LPAREN          shift and go to state 8
+    VARIABLE        shift and go to state 2
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    LPAREN          shift and go to state 6
 
-    term                           shift and go to state 15
-    factor                         shift and go to state 3
+    expression                     shift and go to state 23
+    factor                         shift and go to state 24
 
 state 10
 
-    (6) expression -> expression DISJUNCTION . term
-    (2) term -> . factor
-    (3) factor -> . NUMBER
-    (4) factor -> . CHARS
-    (8) factor -> . NEGATION factor
-    (9) factor -> . DNEGATION CHARS
-    (10) factor -> . LPAREN expression RPAREN
+    (6) expression -> factor AND . expression
+    (7) expression -> factor AND . factor
+    (1) expression -> . VARIABLE
+    (4) expression -> . expression AND expression
+    (5) expression -> . expression AND factor
+    (6) expression -> . factor AND expression
+    (7) expression -> . factor AND factor
+    (8) expression -> . expression OR expression
+    (9) expression -> . expression OR factor
+    (10) expression -> . factor OR expression
+    (11) expression -> . factor OR factor
+    (12) expression -> . expression IMP expression
+    (13) expression -> . expression IMP factor
+    (14) expression -> . factor IMP expression
+    (15) expression -> . factor IMP factor
+    (16) expression -> . NEGATION expression
+    (17) expression -> . NEGATION predicate
+    (18) expression -> . DOUBLE_NEGATION expression
+    (19) expression -> . DOUBLE_NEGATION factor
+    (2) factor -> . LPAREN expression RPAREN
 
-    NUMBER          shift and go to state 4
-    CHARS           shift and go to state 5
-    NEGATION        shift and go to state 6
-    DNEGATION       shift and go to state 7
-    LPAREN          shift and go to state 8
+    VARIABLE        shift and go to state 2
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    LPAREN          shift and go to state 6
 
-    term                           shift and go to state 16
-    factor                         shift and go to state 3
+    factor                         shift and go to state 25
+    expression                     shift and go to state 26
 
 state 11
 
-    (7) expression -> expression IMPLICATION . term
-    (2) term -> . factor
-    (3) factor -> . NUMBER
-    (4) factor -> . CHARS
-    (8) factor -> . NEGATION factor
-    (9) factor -> . DNEGATION CHARS
-    (10) factor -> . LPAREN expression RPAREN
+    (10) expression -> factor OR . expression
+    (11) expression -> factor OR . factor
+    (1) expression -> . VARIABLE
+    (4) expression -> . expression AND expression
+    (5) expression -> . expression AND factor
+    (6) expression -> . factor AND expression
+    (7) expression -> . factor AND factor
+    (8) expression -> . expression OR expression
+    (9) expression -> . expression OR factor
+    (10) expression -> . factor OR expression
+    (11) expression -> . factor OR factor
+    (12) expression -> . expression IMP expression
+    (13) expression -> . expression IMP factor
+    (14) expression -> . factor IMP expression
+    (15) expression -> . factor IMP factor
+    (16) expression -> . NEGATION expression
+    (17) expression -> . NEGATION predicate
+    (18) expression -> . DOUBLE_NEGATION expression
+    (19) expression -> . DOUBLE_NEGATION factor
+    (2) factor -> . LPAREN expression RPAREN
 
-    NUMBER          shift and go to state 4
-    CHARS           shift and go to state 5
-    NEGATION        shift and go to state 6
-    DNEGATION       shift and go to state 7
-    LPAREN          shift and go to state 8
+    VARIABLE        shift and go to state 2
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    LPAREN          shift and go to state 6
 
-    term                           shift and go to state 17
-    factor                         shift and go to state 3
+    factor                         shift and go to state 27
+    expression                     shift and go to state 28
 
 state 12
 
-    (8) factor -> NEGATION factor .
+    (14) expression -> factor IMP . expression
+    (15) expression -> factor IMP . factor
+    (1) expression -> . VARIABLE
+    (4) expression -> . expression AND expression
+    (5) expression -> . expression AND factor
+    (6) expression -> . factor AND expression
+    (7) expression -> . factor AND factor
+    (8) expression -> . expression OR expression
+    (9) expression -> . expression OR factor
+    (10) expression -> . factor OR expression
+    (11) expression -> . factor OR factor
+    (12) expression -> . expression IMP expression
+    (13) expression -> . expression IMP factor
+    (14) expression -> . factor IMP expression
+    (15) expression -> . factor IMP factor
+    (16) expression -> . NEGATION expression
+    (17) expression -> . NEGATION predicate
+    (18) expression -> . DOUBLE_NEGATION expression
+    (19) expression -> . DOUBLE_NEGATION factor
+    (2) factor -> . LPAREN expression RPAREN
 
-    CONJUNCTION     reduce using rule 8 (factor -> NEGATION factor .)
-    DISJUNCTION     reduce using rule 8 (factor -> NEGATION factor .)
-    IMPLICATION     reduce using rule 8 (factor -> NEGATION factor .)
-    $end            reduce using rule 8 (factor -> NEGATION factor .)
-    RPAREN          reduce using rule 8 (factor -> NEGATION factor .)
+    VARIABLE        shift and go to state 2
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    LPAREN          shift and go to state 6
 
+    factor                         shift and go to state 29
+    expression                     shift and go to state 30
 
 state 13
 
-    (9) factor -> DNEGATION CHARS .
+    (16) expression -> NEGATION expression .
+    (4) expression -> expression . AND expression
+    (5) expression -> expression . AND factor
+    (8) expression -> expression . OR expression
+    (9) expression -> expression . OR factor
+    (12) expression -> expression . IMP expression
+    (13) expression -> expression . IMP factor
 
-    CONJUNCTION     reduce using rule 9 (factor -> DNEGATION CHARS .)
-    DISJUNCTION     reduce using rule 9 (factor -> DNEGATION CHARS .)
-    IMPLICATION     reduce using rule 9 (factor -> DNEGATION CHARS .)
-    $end            reduce using rule 9 (factor -> DNEGATION CHARS .)
-    RPAREN          reduce using rule 9 (factor -> DNEGATION CHARS .)
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 16 (expression -> NEGATION expression .)
+    RPAREN          reduce using rule 16 (expression -> NEGATION expression .)
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+    IMP             shift and go to state 9
+
+  ! AND             [ reduce using rule 16 (expression -> NEGATION expression .) ]
+  ! OR              [ reduce using rule 16 (expression -> NEGATION expression .) ]
+  ! IMP             [ reduce using rule 16 (expression -> NEGATION expression .) ]
 
 
 state 14
 
-    (10) factor -> LPAREN expression . RPAREN
-    (5) expression -> expression . CONJUNCTION term
-    (6) expression -> expression . DISJUNCTION term
-    (7) expression -> expression . IMPLICATION term
+    (17) expression -> NEGATION predicate .
 
-    RPAREN          shift and go to state 18
-    CONJUNCTION     shift and go to state 9
-    DISJUNCTION     shift and go to state 10
-    IMPLICATION     shift and go to state 11
+    AND             reduce using rule 17 (expression -> NEGATION predicate .)
+    OR              reduce using rule 17 (expression -> NEGATION predicate .)
+    IMP             reduce using rule 17 (expression -> NEGATION predicate .)
+    $end            reduce using rule 17 (expression -> NEGATION predicate .)
+    RPAREN          reduce using rule 17 (expression -> NEGATION predicate .)
 
 
 state 15
 
-    (5) expression -> expression CONJUNCTION term .
+    (3) predicate -> LPAREN . expression RPAREN
+    (2) factor -> LPAREN . expression RPAREN
+    (1) expression -> . VARIABLE
+    (4) expression -> . expression AND expression
+    (5) expression -> . expression AND factor
+    (6) expression -> . factor AND expression
+    (7) expression -> . factor AND factor
+    (8) expression -> . expression OR expression
+    (9) expression -> . expression OR factor
+    (10) expression -> . factor OR expression
+    (11) expression -> . factor OR factor
+    (12) expression -> . expression IMP expression
+    (13) expression -> . expression IMP factor
+    (14) expression -> . factor IMP expression
+    (15) expression -> . factor IMP factor
+    (16) expression -> . NEGATION expression
+    (17) expression -> . NEGATION predicate
+    (18) expression -> . DOUBLE_NEGATION expression
+    (19) expression -> . DOUBLE_NEGATION factor
+    (2) factor -> . LPAREN expression RPAREN
 
-    CONJUNCTION     reduce using rule 5 (expression -> expression CONJUNCTION term .)
-    DISJUNCTION     reduce using rule 5 (expression -> expression CONJUNCTION term .)
-    IMPLICATION     reduce using rule 5 (expression -> expression CONJUNCTION term .)
-    $end            reduce using rule 5 (expression -> expression CONJUNCTION term .)
-    RPAREN          reduce using rule 5 (expression -> expression CONJUNCTION term .)
+    VARIABLE        shift and go to state 2
+    NEGATION        shift and go to state 4
+    DOUBLE_NEGATION shift and go to state 5
+    LPAREN          shift and go to state 6
 
+    expression                     shift and go to state 31
+    factor                         shift and go to state 3
 
 state 16
 
-    (6) expression -> expression DISJUNCTION term .
+    (18) expression -> DOUBLE_NEGATION expression .
+    (4) expression -> expression . AND expression
+    (5) expression -> expression . AND factor
+    (8) expression -> expression . OR expression
+    (9) expression -> expression . OR factor
+    (12) expression -> expression . IMP expression
+    (13) expression -> expression . IMP factor
 
-    CONJUNCTION     reduce using rule 6 (expression -> expression DISJUNCTION term .)
-    DISJUNCTION     reduce using rule 6 (expression -> expression DISJUNCTION term .)
-    IMPLICATION     reduce using rule 6 (expression -> expression DISJUNCTION term .)
-    $end            reduce using rule 6 (expression -> expression DISJUNCTION term .)
-    RPAREN          reduce using rule 6 (expression -> expression DISJUNCTION term .)
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 18 (expression -> DOUBLE_NEGATION expression .)
+    RPAREN          reduce using rule 18 (expression -> DOUBLE_NEGATION expression .)
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+    IMP             shift and go to state 9
+
+  ! AND             [ reduce using rule 18 (expression -> DOUBLE_NEGATION expression .) ]
+  ! OR              [ reduce using rule 18 (expression -> DOUBLE_NEGATION expression .) ]
+  ! IMP             [ reduce using rule 18 (expression -> DOUBLE_NEGATION expression .) ]
 
 
 state 17
 
-    (7) expression -> expression IMPLICATION term .
+    (19) expression -> DOUBLE_NEGATION factor .
+    (6) expression -> factor . AND expression
+    (7) expression -> factor . AND factor
+    (10) expression -> factor . OR expression
+    (11) expression -> factor . OR factor
+    (14) expression -> factor . IMP expression
+    (15) expression -> factor . IMP factor
 
-    CONJUNCTION     reduce using rule 7 (expression -> expression IMPLICATION term .)
-    DISJUNCTION     reduce using rule 7 (expression -> expression IMPLICATION term .)
-    IMPLICATION     reduce using rule 7 (expression -> expression IMPLICATION term .)
-    $end            reduce using rule 7 (expression -> expression IMPLICATION term .)
-    RPAREN          reduce using rule 7 (expression -> expression IMPLICATION term .)
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 19 (expression -> DOUBLE_NEGATION factor .)
+    RPAREN          reduce using rule 19 (expression -> DOUBLE_NEGATION factor .)
+    AND             shift and go to state 10
+    OR              shift and go to state 11
+    IMP             shift and go to state 12
+
+  ! AND             [ reduce using rule 19 (expression -> DOUBLE_NEGATION factor .) ]
+  ! OR              [ reduce using rule 19 (expression -> DOUBLE_NEGATION factor .) ]
+  ! IMP             [ reduce using rule 19 (expression -> DOUBLE_NEGATION factor .) ]
 
 
 state 18
 
-    (10) factor -> LPAREN expression RPAREN .
+    (2) factor -> LPAREN expression . RPAREN
+    (4) expression -> expression . AND expression
+    (5) expression -> expression . AND factor
+    (8) expression -> expression . OR expression
+    (9) expression -> expression . OR factor
+    (12) expression -> expression . IMP expression
+    (13) expression -> expression . IMP factor
 
-    CONJUNCTION     reduce using rule 10 (factor -> LPAREN expression RPAREN .)
-    DISJUNCTION     reduce using rule 10 (factor -> LPAREN expression RPAREN .)
-    IMPLICATION     reduce using rule 10 (factor -> LPAREN expression RPAREN .)
-    $end            reduce using rule 10 (factor -> LPAREN expression RPAREN .)
-    RPAREN          reduce using rule 10 (factor -> LPAREN expression RPAREN .)
+    RPAREN          shift and go to state 32
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+    IMP             shift and go to state 9
 
+
+state 19
+
+    (4) expression -> expression AND expression .
+    (4) expression -> expression . AND expression
+    (5) expression -> expression . AND factor
+    (8) expression -> expression . OR expression
+    (9) expression -> expression . OR factor
+    (12) expression -> expression . IMP expression
+    (13) expression -> expression . IMP factor
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 4 (expression -> expression AND expression .)
+    RPAREN          reduce using rule 4 (expression -> expression AND expression .)
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+    IMP             shift and go to state 9
+
+  ! AND             [ reduce using rule 4 (expression -> expression AND expression .) ]
+  ! OR              [ reduce using rule 4 (expression -> expression AND expression .) ]
+  ! IMP             [ reduce using rule 4 (expression -> expression AND expression .) ]
+
+
+state 20
+
+    (5) expression -> expression AND factor .
+    (6) expression -> factor . AND expression
+    (7) expression -> factor . AND factor
+    (10) expression -> factor . OR expression
+    (11) expression -> factor . OR factor
+    (14) expression -> factor . IMP expression
+    (15) expression -> factor . IMP factor
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 5 (expression -> expression AND factor .)
+    RPAREN          reduce using rule 5 (expression -> expression AND factor .)
+    AND             shift and go to state 10
+    OR              shift and go to state 11
+    IMP             shift and go to state 12
+
+  ! AND             [ reduce using rule 5 (expression -> expression AND factor .) ]
+  ! OR              [ reduce using rule 5 (expression -> expression AND factor .) ]
+  ! IMP             [ reduce using rule 5 (expression -> expression AND factor .) ]
+
+
+state 21
+
+    (8) expression -> expression OR expression .
+    (4) expression -> expression . AND expression
+    (5) expression -> expression . AND factor
+    (8) expression -> expression . OR expression
+    (9) expression -> expression . OR factor
+    (12) expression -> expression . IMP expression
+    (13) expression -> expression . IMP factor
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 8 (expression -> expression OR expression .)
+    RPAREN          reduce using rule 8 (expression -> expression OR expression .)
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+    IMP             shift and go to state 9
+
+  ! AND             [ reduce using rule 8 (expression -> expression OR expression .) ]
+  ! OR              [ reduce using rule 8 (expression -> expression OR expression .) ]
+  ! IMP             [ reduce using rule 8 (expression -> expression OR expression .) ]
+
+
+state 22
+
+    (9) expression -> expression OR factor .
+    (6) expression -> factor . AND expression
+    (7) expression -> factor . AND factor
+    (10) expression -> factor . OR expression
+    (11) expression -> factor . OR factor
+    (14) expression -> factor . IMP expression
+    (15) expression -> factor . IMP factor
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 9 (expression -> expression OR factor .)
+    RPAREN          reduce using rule 9 (expression -> expression OR factor .)
+    AND             shift and go to state 10
+    OR              shift and go to state 11
+    IMP             shift and go to state 12
+
+  ! AND             [ reduce using rule 9 (expression -> expression OR factor .) ]
+  ! OR              [ reduce using rule 9 (expression -> expression OR factor .) ]
+  ! IMP             [ reduce using rule 9 (expression -> expression OR factor .) ]
+
+
+state 23
+
+    (12) expression -> expression IMP expression .
+    (4) expression -> expression . AND expression
+    (5) expression -> expression . AND factor
+    (8) expression -> expression . OR expression
+    (9) expression -> expression . OR factor
+    (12) expression -> expression . IMP expression
+    (13) expression -> expression . IMP factor
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 12 (expression -> expression IMP expression .)
+    RPAREN          reduce using rule 12 (expression -> expression IMP expression .)
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+    IMP             shift and go to state 9
+
+  ! AND             [ reduce using rule 12 (expression -> expression IMP expression .) ]
+  ! OR              [ reduce using rule 12 (expression -> expression IMP expression .) ]
+  ! IMP             [ reduce using rule 12 (expression -> expression IMP expression .) ]
+
+
+state 24
+
+    (13) expression -> expression IMP factor .
+    (6) expression -> factor . AND expression
+    (7) expression -> factor . AND factor
+    (10) expression -> factor . OR expression
+    (11) expression -> factor . OR factor
+    (14) expression -> factor . IMP expression
+    (15) expression -> factor . IMP factor
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 13 (expression -> expression IMP factor .)
+    RPAREN          reduce using rule 13 (expression -> expression IMP factor .)
+    AND             shift and go to state 10
+    OR              shift and go to state 11
+    IMP             shift and go to state 12
+
+  ! AND             [ reduce using rule 13 (expression -> expression IMP factor .) ]
+  ! OR              [ reduce using rule 13 (expression -> expression IMP factor .) ]
+  ! IMP             [ reduce using rule 13 (expression -> expression IMP factor .) ]
+
+
+state 25
+
+    (7) expression -> factor AND factor .
+    (6) expression -> factor . AND expression
+    (7) expression -> factor . AND factor
+    (10) expression -> factor . OR expression
+    (11) expression -> factor . OR factor
+    (14) expression -> factor . IMP expression
+    (15) expression -> factor . IMP factor
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 7 (expression -> factor AND factor .)
+    RPAREN          reduce using rule 7 (expression -> factor AND factor .)
+    AND             shift and go to state 10
+    OR              shift and go to state 11
+    IMP             shift and go to state 12
+
+  ! AND             [ reduce using rule 7 (expression -> factor AND factor .) ]
+  ! OR              [ reduce using rule 7 (expression -> factor AND factor .) ]
+  ! IMP             [ reduce using rule 7 (expression -> factor AND factor .) ]
+
+
+state 26
+
+    (6) expression -> factor AND expression .
+    (4) expression -> expression . AND expression
+    (5) expression -> expression . AND factor
+    (8) expression -> expression . OR expression
+    (9) expression -> expression . OR factor
+    (12) expression -> expression . IMP expression
+    (13) expression -> expression . IMP factor
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 6 (expression -> factor AND expression .)
+    RPAREN          reduce using rule 6 (expression -> factor AND expression .)
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+    IMP             shift and go to state 9
+
+  ! AND             [ reduce using rule 6 (expression -> factor AND expression .) ]
+  ! OR              [ reduce using rule 6 (expression -> factor AND expression .) ]
+  ! IMP             [ reduce using rule 6 (expression -> factor AND expression .) ]
+
+
+state 27
+
+    (11) expression -> factor OR factor .
+    (6) expression -> factor . AND expression
+    (7) expression -> factor . AND factor
+    (10) expression -> factor . OR expression
+    (11) expression -> factor . OR factor
+    (14) expression -> factor . IMP expression
+    (15) expression -> factor . IMP factor
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 11 (expression -> factor OR factor .)
+    RPAREN          reduce using rule 11 (expression -> factor OR factor .)
+    AND             shift and go to state 10
+    OR              shift and go to state 11
+    IMP             shift and go to state 12
+
+  ! AND             [ reduce using rule 11 (expression -> factor OR factor .) ]
+  ! OR              [ reduce using rule 11 (expression -> factor OR factor .) ]
+  ! IMP             [ reduce using rule 11 (expression -> factor OR factor .) ]
+
+
+state 28
+
+    (10) expression -> factor OR expression .
+    (4) expression -> expression . AND expression
+    (5) expression -> expression . AND factor
+    (8) expression -> expression . OR expression
+    (9) expression -> expression . OR factor
+    (12) expression -> expression . IMP expression
+    (13) expression -> expression . IMP factor
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 10 (expression -> factor OR expression .)
+    RPAREN          reduce using rule 10 (expression -> factor OR expression .)
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+    IMP             shift and go to state 9
+
+  ! AND             [ reduce using rule 10 (expression -> factor OR expression .) ]
+  ! OR              [ reduce using rule 10 (expression -> factor OR expression .) ]
+  ! IMP             [ reduce using rule 10 (expression -> factor OR expression .) ]
+
+
+state 29
+
+    (15) expression -> factor IMP factor .
+    (6) expression -> factor . AND expression
+    (7) expression -> factor . AND factor
+    (10) expression -> factor . OR expression
+    (11) expression -> factor . OR factor
+    (14) expression -> factor . IMP expression
+    (15) expression -> factor . IMP factor
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 15 (expression -> factor IMP factor .)
+    RPAREN          reduce using rule 15 (expression -> factor IMP factor .)
+    AND             shift and go to state 10
+    OR              shift and go to state 11
+    IMP             shift and go to state 12
+
+  ! AND             [ reduce using rule 15 (expression -> factor IMP factor .) ]
+  ! OR              [ reduce using rule 15 (expression -> factor IMP factor .) ]
+  ! IMP             [ reduce using rule 15 (expression -> factor IMP factor .) ]
+
+
+state 30
+
+    (14) expression -> factor IMP expression .
+    (4) expression -> expression . AND expression
+    (5) expression -> expression . AND factor
+    (8) expression -> expression . OR expression
+    (9) expression -> expression . OR factor
+    (12) expression -> expression . IMP expression
+    (13) expression -> expression . IMP factor
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMP resolved as shift
+    $end            reduce using rule 14 (expression -> factor IMP expression .)
+    RPAREN          reduce using rule 14 (expression -> factor IMP expression .)
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+    IMP             shift and go to state 9
+
+  ! AND             [ reduce using rule 14 (expression -> factor IMP expression .) ]
+  ! OR              [ reduce using rule 14 (expression -> factor IMP expression .) ]
+  ! IMP             [ reduce using rule 14 (expression -> factor IMP expression .) ]
+
+
+state 31
+
+    (3) predicate -> LPAREN expression . RPAREN
+    (2) factor -> LPAREN expression . RPAREN
+    (4) expression -> expression . AND expression
+    (5) expression -> expression . AND factor
+    (8) expression -> expression . OR expression
+    (9) expression -> expression . OR factor
+    (12) expression -> expression . IMP expression
+    (13) expression -> expression . IMP factor
+
+    RPAREN          shift and go to state 33
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+    IMP             shift and go to state 9
+
+
+state 32
+
+    (2) factor -> LPAREN expression RPAREN .
+
+    AND             reduce using rule 2 (factor -> LPAREN expression RPAREN .)
+    OR              reduce using rule 2 (factor -> LPAREN expression RPAREN .)
+    IMP             reduce using rule 2 (factor -> LPAREN expression RPAREN .)
+    $end            reduce using rule 2 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 2 (factor -> LPAREN expression RPAREN .)
+
+
+state 33
+
+    (3) predicate -> LPAREN expression RPAREN .
+    (2) factor -> LPAREN expression RPAREN .
+
+  ! reduce/reduce conflict for AND resolved using rule 2 (factor -> LPAREN expression RPAREN .)
+  ! reduce/reduce conflict for OR resolved using rule 2 (factor -> LPAREN expression RPAREN .)
+  ! reduce/reduce conflict for IMP resolved using rule 2 (factor -> LPAREN expression RPAREN .)
+    $end            reduce using rule 3 (predicate -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 3 (predicate -> LPAREN expression RPAREN .)
+    AND             reduce using rule 2 (factor -> LPAREN expression RPAREN .)
+    OR              reduce using rule 2 (factor -> LPAREN expression RPAREN .)
+    IMP             reduce using rule 2 (factor -> LPAREN expression RPAREN .)
+
+  ! AND             [ reduce using rule 3 (predicate -> LPAREN expression RPAREN .) ]
+  ! OR              [ reduce using rule 3 (predicate -> LPAREN expression RPAREN .) ]
+  ! IMP             [ reduce using rule 3 (predicate -> LPAREN expression RPAREN .) ]
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for AND in state 13 resolved as shift
+WARNING: shift/reduce conflict for OR in state 13 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 13 resolved as shift
+WARNING: shift/reduce conflict for AND in state 16 resolved as shift
+WARNING: shift/reduce conflict for OR in state 16 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 16 resolved as shift
+WARNING: shift/reduce conflict for AND in state 17 resolved as shift
+WARNING: shift/reduce conflict for OR in state 17 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 17 resolved as shift
+WARNING: shift/reduce conflict for AND in state 19 resolved as shift
+WARNING: shift/reduce conflict for OR in state 19 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 19 resolved as shift
+WARNING: shift/reduce conflict for AND in state 20 resolved as shift
+WARNING: shift/reduce conflict for OR in state 20 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 20 resolved as shift
+WARNING: shift/reduce conflict for AND in state 21 resolved as shift
+WARNING: shift/reduce conflict for OR in state 21 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 21 resolved as shift
+WARNING: shift/reduce conflict for AND in state 22 resolved as shift
+WARNING: shift/reduce conflict for OR in state 22 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 22 resolved as shift
+WARNING: shift/reduce conflict for AND in state 23 resolved as shift
+WARNING: shift/reduce conflict for OR in state 23 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 23 resolved as shift
+WARNING: shift/reduce conflict for AND in state 24 resolved as shift
+WARNING: shift/reduce conflict for OR in state 24 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 24 resolved as shift
+WARNING: shift/reduce conflict for AND in state 25 resolved as shift
+WARNING: shift/reduce conflict for OR in state 25 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 25 resolved as shift
+WARNING: shift/reduce conflict for AND in state 26 resolved as shift
+WARNING: shift/reduce conflict for OR in state 26 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 26 resolved as shift
+WARNING: shift/reduce conflict for AND in state 27 resolved as shift
+WARNING: shift/reduce conflict for OR in state 27 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 27 resolved as shift
+WARNING: shift/reduce conflict for AND in state 28 resolved as shift
+WARNING: shift/reduce conflict for OR in state 28 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 28 resolved as shift
+WARNING: shift/reduce conflict for AND in state 29 resolved as shift
+WARNING: shift/reduce conflict for OR in state 29 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 29 resolved as shift
+WARNING: shift/reduce conflict for AND in state 30 resolved as shift
+WARNING: shift/reduce conflict for OR in state 30 resolved as shift
+WARNING: shift/reduce conflict for IMP in state 30 resolved as shift
+WARNING: reduce/reduce conflict in state 33 resolved using rule (factor -> LPAREN expression RPAREN)
+WARNING: rejected rule (predicate -> LPAREN expression RPAREN) in state 33
