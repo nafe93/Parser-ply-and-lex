@@ -48,9 +48,9 @@ def p_predicate_expr(p):
 def p_and_exp_exp_operators(p):
     '''expression  : expression AND expression'''
     p[0] = p[1] + '/\\' + p[3]
-    if len(p[1]) < 3:
+    if '/\\' not in p[1] and '\\/' not in p[1]:
         global_list.append([p[1], None])
-    if len(p[3]) < 3:
+    if '/\\' not in p[3] and '\\/' not in p[3]:
         global_list.append([p[3], None])
 
 
@@ -58,14 +58,14 @@ def p_and_exp_exp_operators(p):
 def p_and_exp_factor_operators(p):
     '''expression  : expression AND factor'''
     p[0] = p[1] + '/\\' + p[3]
-    if len(p[1]) < 3:
+    if '/\\' not in p[1] and '\\/' not in p[1]:
         global_list.append([p[1], None])
 
 
 def p_and_factor_exp_operators(p):
     '''expression  : factor AND expression'''
     p[0] = p[1] + '/\\' + p[3]
-    if len(p[3]) < 3:
+    if '/\\' not in p[3] and '\\/' not in p[3]:
         global_list.append([None, p[3]])
 
 
@@ -98,7 +98,7 @@ while True:
     if not s: continue
     result = parser.parse(s)
     # print(result)
-    # print(global_list)
+    print(global_list)
 
     for index_tuple, _tuple in enumerate(global_list):
         # First tuple
