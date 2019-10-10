@@ -43,10 +43,9 @@ def all_is_none():
     count = 0
     for index_tuple, _tuple in enumerate(global_list):
        if _tuple == [None, None]:
-           count += 1
+           print("not satisfiable")
+           break
 
-    if count > 0:
-        print("not satisfiable")
     else:
         print("satisfiable")
 
