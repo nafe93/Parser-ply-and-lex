@@ -40,14 +40,12 @@ def is_satisfiable(debug=0):
 
 # Проверить что все элементы None
 def all_is_none():
-    counter_list = len(global_list) * 2
-    counter = 0
+    count = 0
     for index_tuple, _tuple in enumerate(global_list):
-        for index_tuple_list, _tuple_list in enumerate(_tuple):
-            if _tuple_list == None:
-                counter += 1
+       if _tuple == [None, None]:
+           count += 1
 
-    if counter_list == counter:
+    if count > 0:
         print("not satisfiable")
     else:
         print("satisfiable")
@@ -73,7 +71,10 @@ def p_imp_exp_exp_operators(p):
     '''expression  : expression IMP expression'''
     negation = parsing_string_for_parsing_string(p[1])
     p[0] = negation + '\\/' + p[3]
-    global_list.append([negation, p[3]])
+    if negation == p[3]:
+        global_list.append([None, p[3]])
+    else:
+        global_list.append([negation, p[3]])
 
 
 def p_predicate_expr(p):
@@ -114,7 +115,10 @@ def p_and_factor_factor_operators(p):
 def p_or_exp_exp_operators(p):
     '''expression  : expression OR expression'''
     p[0] = p[1] + '\\/' + p[3]
-    global_list.append([p[1], p[3]])
+    if p[1] == p[3]:
+        global_list.append([p[1], None])
+    else:
+        global_list.append([p[1], p[3]])
 
 
 # Синтаксическая ошибка
