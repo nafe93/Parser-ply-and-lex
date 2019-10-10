@@ -14,8 +14,6 @@ class MyLexer(object):
         'AND',
         'OR',
         'IMP',
-        'NEGATION',
-        'DOUBLE_NEGATION',
         'LPAREN',
         'RPAREN',
     )
@@ -25,19 +23,13 @@ class MyLexer(object):
     t_AND = r'/\\'
     t_OR = r'\\/'
     t_IMP = r'->'
-    # # логические работают с одной переменной
-    t_NEGATION = r'~'
-    t_DOUBLE_NEGATION = r'~~'
     # Скопки
     t_LPAREN = r'\('
     t_RPAREN = r'\)'
-    # Синтаксис
-    # t_DNF = r'(/\\\(|\)/\\|\)/\\\()'
-    # t_CNF = r'(\\/\(|\)\\/|\)\\/\()'
 
     # A regular expression
     def t_VARIABLE(self, t):
-        r'[A-Za-z]+'
+        r'~?[A-Za-z]+'
         t.value = str(t.value)
         return t
 
