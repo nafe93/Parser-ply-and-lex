@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND IMP LPAREN OR RPAREN VARIABLEexpression : VARIABLEfactor : LPAREN expression RPARENexpression  : expression IMP expressionpredicate : LPAREN expression RPARENexpression  : expression AND expressionexpression  : expression AND factorexpression  : factor AND expressionexpression  : factor AND factorexpression  : expression OR expression'
+_lr_signature = 'AND IMP LPAREN OR RPAREN VARIABLEexpression : VARIABLEfactor : LPAREN expression RPAREN expression : factorexpression  : expression IMP expressionexpression  : expression AND expressionexpression  : expression OR expression'
     
-_lr_action_items = {'VARIABLE':([0,4,5,6,7,8,],[2,2,2,2,2,2,]),'LPAREN':([0,4,5,6,7,8,],[4,4,4,4,4,4,]),'$end':([1,2,10,11,12,13,14,15,16,],[0,-1,-3,-5,-6,-9,-8,-7,-2,]),'IMP':([1,2,9,10,11,12,13,14,15,16,],[5,-1,5,5,5,-6,5,-8,5,-2,]),'AND':([1,2,3,9,10,11,12,13,14,15,16,],[6,-1,8,6,6,6,8,6,8,6,-2,]),'OR':([1,2,9,10,11,12,13,14,15,16,],[7,-1,7,7,7,-6,7,-8,7,-2,]),'RPAREN':([2,9,10,11,12,13,14,15,16,],[-1,16,-3,-5,-6,-9,-8,-7,-2,]),}
+_lr_action_items = {'VARIABLE':([0,4,5,6,7,],[2,2,2,2,2,]),'LPAREN':([0,4,5,6,7,],[4,4,4,4,4,]),'$end':([1,2,3,9,10,11,12,],[0,-1,-3,-4,-5,-6,-2,]),'IMP':([1,2,3,8,9,10,11,12,],[5,-1,-3,5,5,5,5,-2,]),'AND':([1,2,3,8,9,10,11,12,],[6,-1,-3,6,6,6,6,-2,]),'OR':([1,2,3,8,9,10,11,12,],[7,-1,-3,7,7,7,7,-2,]),'RPAREN':([2,3,8,9,10,11,12,],[-1,-3,12,-4,-5,-6,-2,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,4,5,6,7,8,],[1,9,10,11,13,15,]),'factor':([0,4,5,6,7,8,],[3,3,3,12,3,14,]),}
+_lr_goto_items = {'expression':([0,4,5,6,7,],[1,8,9,10,11,]),'factor':([0,4,5,6,7,],[3,3,3,3,3,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,13 +27,10 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> VARIABLE','expression',1,'p_expr_variable','calc_yacc.py',25),
-  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','calc_yacc.py',30),
-  ('expression -> expression IMP expression','expression',3,'p_imp_exp_exp_operators','calc_yacc.py',36),
-  ('predicate -> LPAREN expression RPAREN','predicate',3,'p_predicate_expr','calc_yacc.py',43),
-  ('expression -> expression AND expression','expression',3,'p_and_exp_exp_operators','calc_yacc.py',49),
-  ('expression -> expression AND factor','expression',3,'p_and_exp_factor_operators','calc_yacc.py',54),
-  ('expression -> factor AND expression','expression',3,'p_and_factor_exp_operators','calc_yacc.py',60),
-  ('expression -> factor AND factor','expression',3,'p_and_factor_factor_operators','calc_yacc.py',67),
-  ('expression -> expression OR expression','expression',3,'p_or_exp_exp_operators','calc_yacc.py',74),
+  ('expression -> VARIABLE','expression',1,'p_expr_variable','calc_yacc.py',59),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','calc_yacc.py',64),
+  ('expression -> factor','expression',1,'p_expr_factor','calc_yacc.py',68),
+  ('expression -> expression IMP expression','expression',3,'p_imp_exp_exp_operators','calc_yacc.py',73),
+  ('expression -> expression AND expression','expression',3,'p_and_exp_exp_operators','calc_yacc.py',84),
+  ('expression -> expression OR expression','expression',3,'p_or_exp_exp_operators','calc_yacc.py',113),
 ]
