@@ -20,10 +20,10 @@ def parsing_string_for_parsing_string(my_string):
 
 # Проверка на статисфайбл
 def is_satisfiable(debug=0):
-    if debug == 1:
-        print(global_list)
     # First tuple
     for index_tuple, _tuple in enumerate(global_list):
+        if debug == 1:
+            print(global_list)
         for index_tuple_list, _tuple_list in enumerate(_tuple):
             buffer = list()
             anti_buffer = list()
@@ -53,8 +53,6 @@ def is_satisfiable(debug=0):
                                     first = local_tuple[0]
                                     second = local_tuple[1]
                                     global_list[first][second] = None
-                                if debug == 1:
-                                    print(global_list)
 
 
 # Проверить что все элементы None
@@ -138,5 +136,5 @@ while True:
     # debug = 1 or 0
     # 1 view how the logic work
     # 0 disable how the logic work
-    is_satisfiable(debug=0)
+    is_satisfiable(debug=1)
     all_is_none()
