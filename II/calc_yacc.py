@@ -138,5 +138,5 @@ while True:
     # debug = 1 or 0
     # 1 view how the logic work
     # 0 disable how the logic work
-    is_satisfiable(debug=1)
+    is_satisfiable(debug=0)
     all_is_none()
