@@ -16,6 +16,7 @@ class MyLexer(object):
         'IMP',
         'LPAREN',
         'RPAREN',
+        'DOUBLE_NEGATION'
     )
 
     # Регулярные выражения
@@ -23,15 +24,12 @@ class MyLexer(object):
     t_AND = r'/\\'
     t_OR = r'\\/'
     t_IMP = r'->'
+    t_DOUBLE_NEGATION = r'~~'
     # Скопки
     t_LPAREN = r'\('
     t_RPAREN = r'\)'
-
-    # A regular expression
-    def t_VARIABLE(self, t):
-        r'~?[A-Za-z]+'
-        t.value = str(t.value)
-        return t
+    # Паременная
+    t_VARIABLE = r'~?[A-Za-z]+'
 
     # Переход строки
     def t_newline(self, t):
@@ -59,8 +57,9 @@ class MyLexer(object):
                 break
             print(tok)
 
+
 # Build the lexer and try it out
 m = MyLexer()
-m.build()           # Build the lexer
+m.build()  # Build the lexer
 # m.test("p/\\((s/\\t)\\/l)")     # Test it
-m.test("~p")
+# m.test("~~p")

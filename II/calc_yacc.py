@@ -9,7 +9,7 @@ global_list = list()
 
 
 # Работа с строками
-def parsing_string_for_parsing_string(my_string):
+def negation(my_string):
     if '~' in my_string:
         my_string = my_string[1:]
     else:
@@ -19,54 +19,29 @@ def parsing_string_for_parsing_string(my_string):
 
 
 # Проверка на статисфайбл
-def is_satisfiable(debug=0):
-    # First tuple
-    for index_tuple, _tuple in enumerate(global_list):
+def resolution(_list, debug=0):
+    # first tuple
+    for _index_tuple_1, _tuple_1 in enumerate(_list):
         if debug == 1:
-            print(global_list)
-        for index_tuple_list, _tuple_list in enumerate(_tuple):
-            buffer = list()
-            anti_buffer = list()
-            if _tuple_list is not None and '~' in _tuple_list:
-                # Second tuple
-                for index_second_tuple, second_tuple in enumerate(global_list):
-                    for index_second_tuple_list, second_tuple_list in enumerate(second_tuple):
-                        # Add all same elements
-                        if second_tuple_list is not None and _tuple_list is not None:
-                            if _tuple_list == second_tuple_list:
-                                buffer.append([index_second_tuple, index_second_tuple_list])
-                            if _tuple_list == '~' + second_tuple_list:
-                                anti_buffer.append([index_second_tuple, index_second_tuple_list])
-                # Second tuple
-                for index_second_tuple, second_tuple in enumerate(global_list):
-                    for index_second_tuple_list, second_tuple_list in enumerate(second_tuple):
-                        # Delete all same elements
-                        if second_tuple_list is not None and _tuple_list is not None:
-                            if _tuple_list == '~' + second_tuple_list:
-                                # _tuple[index_tuple_list] = None
-                                # second_tuple[index_second_tuple_list] = None
-                                for local_tuple in buffer:
-                                    first = local_tuple[0]
-                                    second = local_tuple[1]
-                                    global_list[first][second] = None
-                                for local_tuple in anti_buffer:
-                                    first = local_tuple[0]
-                                    second = local_tuple[1]
-                                    global_list[first][second] = None
-
-
-# Проверить что все элементы None
-def all_is_none():
-    count = 0
-    for index_tuple, _tuple in enumerate(global_list):
-        if _tuple == [None, None]:
-            print("not satisfiable")
-            break
-
-    else:
-        print("satisfiable")
-
-    global_list.clear()
+            print(_list)
+        # second tuple
+        for _index_tuple_2, _tuple_2 in enumerate(_list[_index_tuple_1 + 1:]):
+            # get element from tuple one
+            for index_element_1, a in enumerate(_tuple_1):
+                # get element from tuple two
+                for index_element_2, b in enumerate(_tuple_2):
+                    if a is not None and negation(a) == b:
+                        result_1 = _tuple_1[1 - index_element_1]
+                        result_2 = _tuple_2[1 - index_element_2]
+                        if result_1 is None and result_2 is None:
+                            _list.clear()
+                            return "not satisfiable"
+                        elif result_1 == result_2 and result_1 is not None:
+                            _list.append([result_1, None])
+                        else:
+                            _list.append([result_1, result_2])
+    _list.clear()
+    return "satisfiable"
 
 
 # parser logic
@@ -90,21 +65,21 @@ def p_expr_factor(p):
 # Операции над imp
 def p_imp_exp_exp_operators(p):
     '''expression  : expression IMP expression'''
-    negation = parsing_string_for_parsing_string(p[1])
-    p[0] = negation + '\\/' + p[3]
+    _negation = negation(p[1])
+    p[0] = _negation + '\\/' + p[3]
     if negation == p[3]:
         global_list.append([None, p[3]])
     else:
-        global_list.append([negation, p[3]])
+        global_list.append([_negation, p[3]])
 
 
 # Операции над AND
 def p_and_exp_exp_operators(p):
     '''expression  : expression AND expression'''
     p[0] = p[1] + '/\\' + p[3]
-    if '/\\' not in p[1] and '\\/' not in p[1]:
+    if p[1] is not None:
         global_list.append([p[1], None])
-    if '/\\' not in p[3] and '\\/' not in p[3]:
+    if p[3] is not None:
         global_list.append([p[3], None])
 
 
@@ -112,10 +87,7 @@ def p_and_exp_exp_operators(p):
 def p_or_exp_exp_operators(p):
     '''expression  : expression OR expression'''
     p[0] = p[1] + '\\/' + p[3]
-    if p[1] == p[3]:
-        global_list.append([p[1], None])
-    else:
-        global_list.append([p[1], p[3]])
+    global_list.append([p[1], p[3]])
 
 
 # Синтаксическая ошибка
@@ -136,5 +108,5 @@ while True:
     # debug = 1 or 0
     # 1 view how the logic work
     # 0 disable how the logic work
-    is_satisfiable(debug=0)
-    all_is_none()
+    result = resolution(global_list, debug=0)
+    print(result)

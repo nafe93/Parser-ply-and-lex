@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="730ee2a9-fd25-420a-9edc-63dee4f46c0f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../II.rar" beforeDir="false" afterPath="$PROJECT_DIR$/../II.rar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calc_lex.py" beforeDir="false" afterPath="$PROJECT_DIR$/calc_lex.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calc_yacc.py" beforeDir="false" afterPath="$PROJECT_DIR$/calc_yacc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsetab.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,10 +21,19 @@
         <entry file="file://$PROJECT_DIR$/calc_yacc.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="353">
-              <caret line="138" column="26" selection-start-line="138" selection-start-column="26" selection-end-line="138" selection-end-column="26" />
+              <caret line="110" column="44" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/calc_lex.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="900">
+              <caret line="63" selection-start-line="63" selection-end-line="65" />
             </state>
           </provider>
         </entry>
@@ -35,23 +49,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>DNEGATION</find>
-      <find>LPAREN</find>
-      <find>morgan</find>
-      <find>DEMORGAN</find>
-      <find>В символе под номером</find>
-      <find>NDISJUNCTION</find>
-      <find>NCONJUNCTION</find>
-      <find>for</find>
-      <find>expression :</find>
-      <find>YaccProduction</find>
-      <find>/</find>
-      <find>p_factor_conjuction</find>
       <find>negat</find>
       <find>print(</find>
       <find>if len(p[2]) == 1:</find>
       <find>global_paren_list</find>
-      <find>print</find>
       <find>number</find>
       <find>term</find>
       <find>expression</find>
@@ -60,17 +61,32 @@
       <find>p_expression_variable</find>
       <find>factor</find>
       <find>and</find>
-      <find>AND</find>
       <find>predica</find>
       <find>double</find>
       <find>Синтаксическая ошибка в воде данных!</find>
       <find>[['~p', 'q'], ['~q', 'r'], ['~r', 's'],</find>
+      <find>print</find>
+      <find>Resolution</find>
+      <find>printable</find>
+      <find>var_form</find>
+      <find>PLUS</find>
+      <find>el1</find>
+      <find>AND</find>
+      <find>MULT</find>
+      <find>imp</find>
+      <find>dist</find>
+      <find>resolution</find>
+      <find>LALR</find>
+      <find>result</find>
+      <find>parsing_string_for_parsing_string</find>
     </findStrings>
     <replaceStrings>
       <replace>morgan</replace>
       <replace>MORGAN</replace>
       <replace>or</replace>
       <replace>OR</replace>
+      <replace>global_list</replace>
+      <replace>_list</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -87,13 +103,16 @@
         <option value="$PROJECT_DIR$/calclex.py" />
         <option value="$PROJECT_DIR$/calcyacc.py" />
         <option value="$PROJECT_DIR$/logic.py" />
+        <option value="$USER_HOME$/Downloads/Parsing-with-Lex-Yacc-master/Parsing-with-Lex-Yacc-master/hw_ply.py" />
+        <option value="$USER_HOME$/Downloads/L_amp_Y.py" />
         <option value="$PROJECT_DIR$/calc_lex.py" />
         <option value="$PROJECT_DIR$/calc_yacc.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+    <option name="x" value="350" />
+    <option name="y" value="386" />
     <option name="width" value="1934" />
     <option name="height" value="1047" />
   </component>
@@ -120,7 +139,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../I" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -149,6 +168,28 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.calc_yacc">
+    <configuration name="L_amp_Y" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="I" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Downloads" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Downloads/L_amp_Y.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="calc_lex" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="I" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -193,28 +234,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="calclex" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="I" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/calclex.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="calcyacc" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="I" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -237,7 +256,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="hw_ply" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="I" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -245,12 +264,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Downloads/Parsing-with-Lex-Yacc-master/Parsing-with-Lex-Yacc-master" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\Python\math_parser\I\calclex.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Downloads/Parsing-with-Lex-Yacc-master/Parsing-with-Lex-Yacc-master/hw_ply.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -262,10 +281,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.calc_yacc" />
+        <item itemvalue="Python.L_amp_Y" />
         <item itemvalue="Python.calc_lex" />
+        <item itemvalue="Python.hw_ply" />
         <item itemvalue="Python.calcyacc" />
-        <item itemvalue="Python.calclex" />
-        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -297,29 +316,39 @@
       <workItem from="1570736385395" duration="2426000" />
       <workItem from="1570745943578" duration="273000" />
       <workItem from="1570746233251" duration="5000" />
-      <workItem from="1570793502907" duration="5174000" />
+      <workItem from="1570793502907" duration="5253000" />
+      <workItem from="1570799240182" duration="642000" />
+      <workItem from="1570799975075" duration="1018000" />
+      <workItem from="1570802415643" duration="46000" />
+      <workItem from="1570826490718" duration="98000" />
+      <workItem from="1570873487460" duration="22000" />
+      <workItem from="1570919844690" duration="1175000" />
+      <workItem from="1570921681587" duration="43000" />
+      <workItem from="1570921725889" duration="1608000" />
+      <workItem from="1570923590404" duration="3184000" />
+      <workItem from="1570951473492" duration="4554000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108350000" />
+    <option name="totallyTimeSpent" value="120819000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30277187" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49841774" visible="true" weight="0.33742005" />
+      <window_info id="Structure" order="1" sideWeight="0.50158226" side_tool="true" visible="true" weight="0.33742005" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="3" weight="0.32936078" />
-      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.50053304" side_tool="true" weight="0.31527627" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.31527627" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.49946696" visible="true" weight="0.31527627" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -338,10 +367,12 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/II$L_amp_Y.coverage" NAME="L_amp_Y Coverage Results" MODIFIED="1570954414247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads" />
     <SUITE FILE_PATH="coverage/I$calcyacc.coverage" NAME="calcyacc Coverage Results" MODIFIED="1570608467516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/I$main.coverage" NAME="main Coverage Results" MODIFIED="1570389584682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/II$calc_lex.coverage" NAME="calc_lex Coverage Results" MODIFIED="1570615647323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/II$calc_yacc.coverage" NAME="calc_yacc Coverage Results" MODIFIED="1570798698168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/II$hw_ply.coverage" NAME="hw_ply Coverage Results" MODIFIED="1570924996179" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads/Parsing-with-Lex-Yacc-master/Parsing-with-Lex-Yacc-master" />
+    <SUITE FILE_PATH="coverage/II$calc_lex.coverage" NAME="calc_lex Coverage Results" MODIFIED="1570927194808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/II$calc_yacc.coverage" NAME="calc_yacc Coverage Results" MODIFIED="1570958277170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/I$calclex.coverage" NAME="calclex Coverage Results" MODIFIED="1570575068528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
@@ -371,17 +402,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Downloads/Parsing-with-Lex-Yacc-master/Parsing-with-Lex-Yacc-master/hw_ply.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="40" column="48" lean-forward="true" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/L_amp_Y.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="124" column="46" selection-start-line="124" selection-start-column="43" selection-end-line="124" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/calc_lex.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+        <state relative-caret-position="900">
+          <caret line="63" selection-start-line="63" selection-end-line="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/calc_yacc.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
-          <caret line="138" column="26" selection-start-line="138" selection-start-column="26" selection-end-line="138" selection-end-column="26" />
+          <caret line="110" column="44" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>

@@ -6,7 +6,7 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND IMP LPAREN OR RPAREN VARIABLEexpression : VARIABLEfactor : LPAREN expression RPAREN expression : factorexpression  : expression IMP expressionexpression  : expression AND expressionexpression  : expression OR expression'
+_lr_signature = 'AND DOUBLE_NEGATION IMP LPAREN OR RPAREN VARIABLEexpression : VARIABLEfactor : LPAREN expression RPAREN expression : factorexpression  : expression IMP expressionexpression  : expression AND expressionexpression  : expression OR expression'
     
 _lr_action_items = {'VARIABLE':([0,4,5,6,7,],[2,2,2,2,2,]),'LPAREN':([0,4,5,6,7,],[4,4,4,4,4,]),'$end':([1,2,3,9,10,11,12,],[0,-1,-3,-4,-5,-6,-2,]),'IMP':([1,2,3,8,9,10,11,12,],[5,-1,-3,5,5,5,5,-2,]),'AND':([1,2,3,8,9,10,11,12,],[6,-1,-3,6,6,6,6,-2,]),'OR':([1,2,3,8,9,10,11,12,],[7,-1,-3,7,7,7,7,-2,]),'RPAREN':([2,3,8,9,10,11,12,],[-1,-3,12,-4,-5,-6,-2,]),}
 
@@ -27,10 +27,10 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> VARIABLE','expression',1,'p_expr_variable','calc_yacc.py',59),
-  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','calc_yacc.py',64),
-  ('expression -> factor','expression',1,'p_expr_factor','calc_yacc.py',68),
-  ('expression -> expression IMP expression','expression',3,'p_imp_exp_exp_operators','calc_yacc.py',73),
-  ('expression -> expression AND expression','expression',3,'p_and_exp_exp_operators','calc_yacc.py',84),
+  ('expression -> VARIABLE','expression',1,'p_expr_variable','calc_yacc.py',76),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','calc_yacc.py',81),
+  ('expression -> factor','expression',1,'p_expr_factor','calc_yacc.py',86),
+  ('expression -> expression IMP expression','expression',3,'p_imp_exp_exp_operators','calc_yacc.py',92),
+  ('expression -> expression AND expression','expression',3,'p_and_exp_exp_operators','calc_yacc.py',103),
   ('expression -> expression OR expression','expression',3,'p_or_exp_exp_operators','calc_yacc.py',113),
 ]
